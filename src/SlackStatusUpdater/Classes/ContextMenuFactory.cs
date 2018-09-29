@@ -63,7 +63,5 @@ namespace SlackStatusUpdater
         {
             Application.Exit();
         }
-
-
     }
 }

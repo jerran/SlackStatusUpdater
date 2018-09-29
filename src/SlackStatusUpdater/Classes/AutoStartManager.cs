@@ -65,8 +65,6 @@ namespace SlackStatusUpdater
             }
 
             return autoStartIsActive;
-
         }
-
     }
 }

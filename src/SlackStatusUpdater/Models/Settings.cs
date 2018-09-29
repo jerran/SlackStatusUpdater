@@ -16,6 +16,11 @@ namespace SlackStatusUpdater.Models
         [XmlElement("legacy-api-token")]
         public string LegacyApiToken { get; set; }
 
+        /// <summary>
+        /// Use XmlIgnore attribute to prevent xml serialization. This field will be bound to the
+        /// actual autostart key value in the Windows registry and will not be read from or
+        /// written to the settings file.
+        /// </summary>
         [XmlIgnore]
         public bool AutoStart { get; set; }
 

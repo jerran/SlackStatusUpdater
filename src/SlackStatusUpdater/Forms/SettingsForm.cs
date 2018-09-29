@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using SlackStatusUpdater.Models;
+﻿using SlackStatusUpdater.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,7 +80,5 @@ namespace SlackStatusUpdater
             this.Dispose();
 
         }
-
-
     }
 }
