@@ -30,7 +30,7 @@ namespace SlackStatusUpdater
 
             // Bind datagridview to status configurations
             BindingSource bs = new BindingSource();
-            bs.DataSource = _settings.StatusConfigs;
+            bs.DataSource = _settings.StatusProfiles;
             dgWifi.DataSource = bs;
 
             // Bind other settings form controls to other settings fields.

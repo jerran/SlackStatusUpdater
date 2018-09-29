@@ -70,9 +70,9 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Status.cs" />
-    <Compile Include="Models\StatusConfiguration.cs" />
+    <Compile Include="Models\StatusProfile.cs" />
     <Compile Include="Classes\SettingsManager.cs" />
-    <Compile Include="Classes\StatusConfigurationService.cs" />
+    <Compile Include="Classes\StatusProfileService.cs" />
     <Compile Include="Classes\StatusSetter.cs" />
     <Compile Include="Classes\UpdateProcess.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

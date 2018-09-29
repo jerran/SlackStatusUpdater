@@ -11,7 +11,7 @@ namespace SlackStatusUpdater.Models
     /// <summary>
     /// Slack status configuration for a specific wifi
     /// </summary>
-    public class StatusConfiguration
+    public class StatusProfile
     {
         [XmlElement("wifi-name")]
         public string WifiName { get; set; }

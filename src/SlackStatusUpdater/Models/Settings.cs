@@ -28,7 +28,7 @@ namespace SlackStatusUpdater.Models
         public Status DefaultStatus { get; set; }
 
         [XmlElement("wifi-config")]
-        public List<StatusConfiguration> StatusConfigs { get; set; }
+        public List<StatusProfile> StatusProfiles { get; set; }
 
     }
 }

@@ -10,7 +10,7 @@ namespace SlackStatusUpdater
     /// <summary>
     /// Class for interpreting the status to set based on the list of connected wifis
     /// </summary>
-    public static class StatusConfigurationService
+    public static class StatusProfileService
     {
         /// <summary>
         /// Return the status to set based on the list of connected wifis
@@ -23,10 +23,10 @@ namespace SlackStatusUpdater
 
             Status status = settings.DefaultStatus;
 
-            foreach (StatusConfiguration config in settings.StatusConfigs)
+            foreach (StatusProfile profile in settings.StatusProfiles)
             {
-                if (wifiNames.Contains(config.WifiName))
-                    status = config.Status;
+                if (wifiNames.Contains(profile.WifiName))
+                    status = profile.Status;
             }
 
             return status;

@@ -95,15 +95,15 @@ namespace SlackStatusUpdater
                     Emoji = ":house:",
                     Text = "Working remotely"
                 },
-                StatusConfigs = new List<StatusConfiguration>()
+                StatusProfiles = new List<StatusProfile>()
                 {
-                    new StatusConfiguration()
+                    new StatusProfile()
                     {
                         WifiName = "HOME_WIFI",
                         Emoji = ":house:",
                         Text = "At home"
                     },
-                    new StatusConfiguration()
+                    new StatusProfile()
                     {
                         WifiName = "OFFICE_WIFI",
                         Emoji = ":computer:",

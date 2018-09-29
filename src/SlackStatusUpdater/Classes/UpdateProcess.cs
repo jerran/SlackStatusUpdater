@@ -53,7 +53,7 @@ namespace SlackStatusUpdater
             var wifiNames = NetworkCheck.GetWifiConnectionSSIDs();
 
             // Find out the corresponding status to be set
-            var statusToSet = StatusConfigurationService.GetStatus(wifiNames);
+            var statusToSet = StatusProfileService.GetStatus(wifiNames);
 
             // Null check and compare status to previous status. Update if changed.
             if (statusToSet != null && !statusToSet.Equals(_previousStatus))
