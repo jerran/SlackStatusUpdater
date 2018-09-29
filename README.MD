@@ -16,7 +16,7 @@ connected to.
 1. Request permission for generating a Slack Legacy API Token from your slack admin [here](https://api.slack.com/custom-integrations/legacy-tokens).
 2. Once slackbot tells you permission has been granted, generate the token on the [same page](https://api.slack.com/custom-integrations/legacy-tokens).
 3. Copy & paste your Legacy API Token to SlackStatusUpdater settings window
-4. Configure wifi status settings.
+4. Create wifi status profiles
 
 ### Prerequisites
 

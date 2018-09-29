@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace SlackStatusUpdater.Models
 {
     /// <summary>
-    /// Slack status configuration for a specific wifi
+    /// Slack status profile for a specific wifi
     /// </summary>
     public class StatusProfile
     {

@@ -20,7 +20,6 @@ namespace SlackStatusUpdater
             // Make sure tray icon is disposed when application exits
             using (TrayIcon trayIcon = new TrayIcon())
             {
-
                 // Start automatic status updates process
                 UpdateProcess.Start();
 

@@ -28,7 +28,7 @@ namespace SlackStatusUpdater
             // Get settings
             _settings = SettingsManager.GetSettings();
 
-            // Bind datagridview to status configurations
+            // Bind datagridview to status profiles
             BindingSource bs = new BindingSource();
             bs.DataSource = _settings.StatusProfiles;
             dgWifi.DataSource = bs;
