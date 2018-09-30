@@ -7,8 +7,9 @@ connected to.
 ### Features
 * User friendly installation, configuration and usage
 * Runs in the background, UI accessible from the system tray
-* Can set custom statuses for any number of wifis
-* Can set default status to be used for unknown wifis
+* Quicksave current Slack status as a profile for current wifi connection
+* Set custom statuses for any number of wifis
+* Set default status to be used for unknown wifis
 * Can be set to autostart when Windows starts
 
 ### Quick Start Guide
@@ -37,6 +38,7 @@ connected to.
 ## Built With
 * [RestSharp](http://restsharp.org/) – A simple REST and HTTP Client for .NET
 * [ManagedWifi](https://archive.codeplex.com/?p=managedwifi) – A .NET managed wrapper around the Windows Native Wifi API.
+* [Json.NET](https://www.newtonsoft.com/json) - Popular high-performance JSON framework for .NET
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
