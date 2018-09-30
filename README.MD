@@ -17,7 +17,7 @@ connected to.
 1. Request permission for generating a Slack Legacy API Token from your slack admin [here](https://api.slack.com/custom-integrations/legacy-tokens).
 2. Once slackbot tells you permission has been granted, generate the token on the [same page](https://api.slack.com/custom-integrations/legacy-tokens).
 3. Copy & paste your Legacy API Token to SlackStatusUpdater settings window
-4. Create wifi status profiles
+4. Create wifi profiles to automate your status updates
 
 ### Prerequisites
 
@@ -39,6 +39,10 @@ connected to.
 * [RestSharp](http://restsharp.org/) – A simple REST and HTTP Client for .NET
 * [ManagedWifi](https://archive.codeplex.com/?p=managedwifi) – A .NET managed wrapper around the Windows Native Wifi API.
 * [Json.NET](https://www.newtonsoft.com/json) - Popular high-performance JSON framework for .NET
+
+## Authors
+
+* Jerri Rantio - [jerran](https://github.com/jerran)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
