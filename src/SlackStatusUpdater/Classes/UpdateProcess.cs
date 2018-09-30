@@ -58,7 +58,7 @@ namespace SlackStatusUpdater
             // Null check and compare status to previous status. Update if changed.
             if (statusToSet != null && !statusToSet.Equals(_previousStatus))
             {
-                var success = StatusSetter.SetSlackStatus(statusToSet);
+                var success = SlackStatusService.SetSlackStatus(statusToSet);
                 if (success)
                     _previousStatus = statusToSet;
             }

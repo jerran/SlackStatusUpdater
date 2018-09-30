@@ -23,6 +23,11 @@ namespace SlackStatusUpdater
         {
             ContextMenuStrip cms = new ContextMenuStrip();
 
+            // Quick set profile
+            ToolStripMenuItem quickSave = new ToolStripMenuItem("Quicksave profile");
+            quickSave.Click += QuickSave_Click;
+            cms.Items.Add(quickSave);
+
             // Settings selection
             ToolStripMenuItem settingsItem = new ToolStripMenuItem("Settings");
             settingsItem.Click += SettingsItem_Click;
@@ -34,6 +39,17 @@ namespace SlackStatusUpdater
             cms.Items.Add(exitItem);
 
             return cms;
+        }
+
+        /// <summary>
+        /// Handle QuickSave click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void QuickSave_Click(object sender, EventArgs e)
+        {
+            // Save current connected wifi and Slack status as a profile
+            QuickSave.SaveCurrentProfile();
         }
 
         /// <summary>

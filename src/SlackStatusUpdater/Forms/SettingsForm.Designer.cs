@@ -41,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cboAutoStart = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,15 +50,15 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 13);
+            this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "LEGACY API TOKEN:";
+            this.label1.Text = "Legacy Api Token:";
             // 
             // tboApiToken
             // 
-            this.tboApiToken.Location = new System.Drawing.Point(127, 6);
+            this.tboApiToken.Location = new System.Drawing.Point(115, 6);
             this.tboApiToken.Name = "tboApiToken";
-            this.tboApiToken.Size = new System.Drawing.Size(595, 20);
+            this.tboApiToken.Size = new System.Drawing.Size(607, 20);
             this.tboApiToken.TabIndex = 1;
             // 
             // dgWifi
@@ -71,7 +72,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(647, 281);
+            this.btnSave.Location = new System.Drawing.Point(646, 276);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
@@ -84,13 +85,13 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "WIFIS:";
+            this.label2.Text = "Wifi Profiles:";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(566, 281);
+            this.btnCancel.Location = new System.Drawing.Point(565, 276);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -100,14 +101,14 @@
             // 
             // tboDefaultIcon
             // 
-            this.tboDefaultIcon.Location = new System.Drawing.Point(74, 236);
+            this.tboDefaultIcon.Location = new System.Drawing.Point(95, 238);
             this.tboDefaultIcon.Name = "tboDefaultIcon";
             this.tboDefaultIcon.Size = new System.Drawing.Size(161, 20);
             this.tboDefaultIcon.TabIndex = 6;
             // 
             // tboDefaultMessage
             // 
-            this.tboDefaultMessage.Location = new System.Drawing.Point(241, 236);
+            this.tboDefaultMessage.Location = new System.Drawing.Point(262, 238);
             this.tboDefaultMessage.Name = "tboDefaultMessage";
             this.tboDefaultMessage.Size = new System.Drawing.Size(161, 20);
             this.tboDefaultMessage.TabIndex = 7;
@@ -115,16 +116,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 239);
+            this.label3.Location = new System.Drawing.Point(12, 241);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 8;
-            this.label3.Text = "DEFAULT:";
+            this.label3.Text = "Default Status:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(73, 220);
+            this.label4.Location = new System.Drawing.Point(92, 222);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 9;
@@ -133,7 +134,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(238, 220);
+            this.label5.Location = new System.Drawing.Point(259, 222);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 13);
             this.label5.TabIndex = 10;
@@ -142,18 +143,28 @@
             // cboAutoStart
             // 
             this.cboAutoStart.AutoSize = true;
-            this.cboAutoStart.Location = new System.Drawing.Point(510, 239);
+            this.cboAutoStart.Location = new System.Drawing.Point(510, 240);
             this.cboAutoStart.Name = "cboAutoStart";
             this.cboAutoStart.Size = new System.Drawing.Size(212, 17);
             this.cboAutoStart.TabIndex = 12;
             this.cboAutoStart.Text = "Start automatically on Windows start up";
             this.cboAutoStart.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(495, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(226, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Press DEL on your keyboard to delete a profile";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 313);
+            this.ClientSize = new System.Drawing.Size(734, 311);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.cboAutoStart);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -192,5 +203,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cboAutoStart;
+        private System.Windows.Forms.Label label6;
     }
 }

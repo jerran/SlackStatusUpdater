@@ -39,6 +39,9 @@
     <Reference Include="ManagedWifi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\managedwifi.1.1.0\lib\net20\ManagedWifi.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=106.3.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.3.1\lib\net452\RestSharp.dll</HintPath>
     </Reference>
@@ -58,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Classes\AutoStartManager.cs" />
     <Compile Include="Classes\ContextMenuFactory.cs" />
+    <Compile Include="Classes\QuickSave.cs" />
     <Compile Include="Classes\TrayIcon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Models\Settings.cs" />
@@ -73,7 +77,7 @@
     <Compile Include="Models\StatusProfile.cs" />
     <Compile Include="Classes\SettingsManager.cs" />
     <Compile Include="Classes\StatusProfileService.cs" />
-    <Compile Include="Classes\StatusSetter.cs" />
+    <Compile Include="Classes\SlackStatusService.cs" />
     <Compile Include="Classes\UpdateProcess.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
