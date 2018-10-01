@@ -33,3 +33,34 @@ Root: HKCU; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: 
 
 [Run]
 Filename: "{app}\SlackStatusUpdater.exe"; Description: "Launch application"; Flags: postinstall nowait skipifsilent
+
+[Code]
+function IsAppRunning(const FileName : string): Boolean;
+var
+FSWbemLocator: Variant;
+FWMIService : Variant;
+FWbemObjectSet: Variant;
+begin
+Result := false;
+FSWbemLocator := CreateOleObject('WBEMScripting.SWBEMLocator');
+FWMIService := FSWbemLocator.ConnectServer('', 'root\CIMV2', '', '');
+FWbemObjectSet := FWMIService.ExecQuery(Format('SELECT Name FROM Win32_Process Where Name="%s"',[FileName]));
+Result := (FWbemObjectSet.Count > 0);
+FWbemObjectSet := Unassigned;
+FWMIService := Unassigned;
+FSWbemLocator := Unassigned;
+end;
+
+function InitializeSetup: boolean;
+begin
+result := not IsAppRunning('SlackStatusUpdater.exe');
+if not result then
+MsgBox('SlackStatusUpdater is running. Please close the application before running the installer ', mbError, MB_OK);
+end;
+
+function InitializeUninstall(): Boolean;
+begin
+result := not IsAppRunning('SlackStatusUpdater.exe');
+if not result then
+MsgBox('SlackStatusUpdater is running. Please close the application before running the uninstaller ', mbError, MB_OK);
+end;
