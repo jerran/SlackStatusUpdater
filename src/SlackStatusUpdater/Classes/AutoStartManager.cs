@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SlackStatusUpdater
+namespace ZulipStatusUpdater
 {
     /// <summary>
     /// Class for handling automatic staring when windows starts
@@ -16,7 +16,7 @@ namespace SlackStatusUpdater
         /// <summary>
         /// Autostart registry value name
         /// </summary>
-        private const string REGISTRY_VALUE_NAME_AUTOSTART = "SlackStatusUpdater";
+        private const string REGISTRY_VALUE_NAME_AUTOSTART = "ZulipStatusUpdater";
 
         /// <summary>
         /// Autostart subkey registry path

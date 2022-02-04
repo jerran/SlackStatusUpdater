@@ -1,5 +1,5 @@
 ﻿using RestSharp;
-using SlackStatusUpdater.Models;
+using ZulipStatusUpdater.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
 
-namespace SlackStatusUpdater
+namespace ZulipStatusUpdater
 {
     /// <summary>
     /// Class for setting slack status

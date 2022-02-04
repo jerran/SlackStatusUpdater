@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using SlackStatusUpdater.Models;
+using ZulipStatusUpdater.Models;
 
-namespace SlackStatusUpdater
+namespace ZulipStatusUpdater
 {
     /// <summary>
     /// Class for managing application settings
@@ -24,7 +24,7 @@ namespace SlackStatusUpdater
             get
             {
                 // In roaming AppData
-                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SlackStatusUpdater");
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ZulipStatusUpdater");
             }
         }
 

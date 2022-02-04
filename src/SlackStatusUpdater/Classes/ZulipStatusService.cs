@@ -1,6 +1,6 @@
 ﻿using RestSharp;
 using RestSharp.Authenticators;
-using SlackStatusUpdater.Models;
+using ZulipStatusUpdater.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
 
-namespace SlackStatusUpdater
+namespace ZulipStatusUpdater
 {
     /// <summary>
     /// Class for setting slack status

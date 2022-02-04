@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SlackStatusUpdater.Models;
+using ZulipStatusUpdater.Models;
 
-namespace SlackStatusUpdater
+namespace ZulipStatusUpdater
 {
     public static class QuickSave
     {

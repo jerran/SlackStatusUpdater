@@ -1,11 +1,11 @@
-﻿using SlackStatusUpdater.Models;
+﻿using ZulipStatusUpdater.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SlackStatusUpdater
+namespace ZulipStatusUpdater
 {
     /// <summary>
     /// Class for interpreting the status to set based on the list of connected wifis

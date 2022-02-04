@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E34F653B-58AE-4575-9440-1C21CB129B8D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SlackStatusUpdater</RootNamespace>
-    <AssemblyName>SlackStatusUpdater</AssemblyName>
+    <RootNamespace>ZulipStatusUpdater</RootNamespace>
+    <AssemblyName>ZulipStatusUpdater</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

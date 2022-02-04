@@ -1,4 +1,4 @@
-﻿namespace SlackStatusUpdater
+﻿namespace ZulipStatusUpdater
 {
     partial class SettingsForm
     {

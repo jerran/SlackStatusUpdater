@@ -1,4 +1,4 @@
-﻿using SlackStatusUpdater.Properties;
+﻿using ZulipStatusUpdater.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SlackStatusUpdater
+namespace ZulipStatusUpdater
 {
     /// <summary>
     /// Disposable class for handling the system tray icon

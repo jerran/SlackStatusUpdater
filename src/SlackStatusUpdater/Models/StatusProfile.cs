@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace SlackStatusUpdater.Models
+namespace ZulipStatusUpdater.Models
 {
     /// <summary>
     /// Slack status profile for a specific wifi

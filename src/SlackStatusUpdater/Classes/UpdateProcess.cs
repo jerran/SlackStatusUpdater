@@ -1,4 +1,4 @@
-﻿using SlackStatusUpdater.Models;
+﻿using ZulipStatusUpdater.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace SlackStatusUpdater
+namespace ZulipStatusUpdater
 {
     /// <summary>
     /// Class for guiding the update process
