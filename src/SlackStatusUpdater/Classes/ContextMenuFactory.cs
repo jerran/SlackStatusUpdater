@@ -71,6 +71,8 @@ namespace ZulipStatusUpdater
             }
         }
 
+
+
         /// <summary>
         /// Handle Exit click event
         /// </summary>

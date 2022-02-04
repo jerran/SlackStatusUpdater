@@ -29,6 +29,7 @@ namespace ZulipStatusUpdater
             ni.ContextMenuStrip = ContextMenuFactory.Create();
             ni.Icon = Resources.zulip_icon;
             ni.Visible = true;
+            ni.Click += new System.EventHandler(NotifyIcon_Click);
         }
 
         /// <summary>
@@ -40,6 +41,11 @@ namespace ZulipStatusUpdater
             ni.Icon = null;
             ni.Visible = false;
             ni.Dispose();
+        }
+
+        public void NotifyIcon_Click(object sender, System.EventArgs e)
+        {
+            UpdateProcess.Execute();
         }
     }
 }

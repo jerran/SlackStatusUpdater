@@ -48,7 +48,7 @@ namespace ZulipStatusUpdater
         /// <summary>
         /// Executes status update process
         /// </summary>
-        private static void Execute()
+        public static void Execute()
         {
             // Get connected SSIDs
             var wifiNames = NetworkCheck.GetWifiConnectionSSIDs();
