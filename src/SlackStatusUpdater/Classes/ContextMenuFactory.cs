@@ -23,10 +23,11 @@ namespace SlackStatusUpdater
         {
             ContextMenuStrip cms = new ContextMenuStrip();
 
+            /*
             // Quick set profile
             ToolStripMenuItem quickSave = new ToolStripMenuItem("Quicksave profile");
             quickSave.Click += QuickSave_Click;
-            cms.Items.Add(quickSave);
+            cms.Items.Add(quickSave);*/
 
             // Settings selection
             ToolStripMenuItem settingsItem = new ToolStripMenuItem("Settings");

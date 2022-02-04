@@ -19,7 +19,7 @@ namespace SlackStatusUpdater.Models
         public string Text { get; set; }
 
 
-        [XmlElement("reaml_emoji")]
+        [XmlElement("realm_emoji")]
         public bool IsRealmEmoji { get; set; }
 
         /// <summary>

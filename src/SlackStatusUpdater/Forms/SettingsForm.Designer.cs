@@ -49,6 +49,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnGetAPIkey = new System.Windows.Forms.Button();
+            this.cboDefaultRealmEmoji = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +77,6 @@
             this.dgWifi.Name = "dgWifi";
             this.dgWifi.Size = new System.Drawing.Size(710, 153);
             this.dgWifi.TabIndex = 2;
-            this.dgWifi.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgWifi_CellContentClick);
             // 
             // btnSave
             // 
@@ -226,11 +226,22 @@
             this.btnGetAPIkey.UseVisualStyleBackColor = true;
             this.btnGetAPIkey.Click += new System.EventHandler(this.btnGetAPIkey_Click);
             // 
+            // cboDefaultRealmEmoji
+            // 
+            this.cboDefaultRealmEmoji.AutoSize = true;
+            this.cboDefaultRealmEmoji.Location = new System.Drawing.Point(95, 329);
+            this.cboDefaultRealmEmoji.Name = "cboDefaultRealmEmoji";
+            this.cboDefaultRealmEmoji.Size = new System.Drawing.Size(83, 17);
+            this.cboDefaultRealmEmoji.TabIndex = 21;
+            this.cboDefaultRealmEmoji.Text = "Realm emoji";
+            this.cboDefaultRealmEmoji.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 374);
+            this.Controls.Add(this.cboDefaultRealmEmoji);
             this.Controls.Add(this.btnGetAPIkey);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -257,7 +268,6 @@
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
-            this.Load += new System.EventHandler(this.SettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -286,5 +296,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnGetAPIkey;
+        private System.Windows.Forms.CheckBox cboDefaultRealmEmoji;
     }
 }

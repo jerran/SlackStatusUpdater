@@ -90,28 +90,29 @@ namespace SlackStatusUpdater
         {
             var defaultSettings = new Settings()
             {
-                
+
                 ZulipRealm = TidyUpURL("chat.zulipchat.com"),
-                ZulipEmail = "example@chat.zulipchat.com",
-                ZulipApikey = "EXAMPLE321",
+                ZulipEmail = "example@example.com",
+                ZulipApikey = "Enter password and press Get API key",
                 DefaultStatus = new Status()
                 {
-                    Emoji = ":house:",
-                    Text = "Working remotely"
+                    Emoji = "house",
+                    Text = "Working remotely",
+                    IsRealmEmoji = false
                 },
                 StatusProfiles = new List<StatusProfile>()
                 {
                     new StatusProfile()
                     {
                         WifiName = "HOME_WIFI",
-                        Emoji = ":house:",
+                        Emoji = "house",
                         IsRealmEmoji = false,
                         Text = "At home"
                     },
                     new StatusProfile()
                     {
                         WifiName = "OFFICE_WIFI",
-                        Emoji = ":computer:",
+                        Emoji = "computer",
                         IsRealmEmoji = false,
                         Text = "At the office"
                     }

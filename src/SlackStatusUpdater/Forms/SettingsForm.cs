@@ -39,6 +39,7 @@ namespace SlackStatusUpdater
             tboZulipRealmURL.DataBindings.Add("Text", _settings, "ZulipRealm", false, DataSourceUpdateMode.OnPropertyChanged);
             tboDefaultIcon.DataBindings.Add("Text", _settings.DefaultStatus, "Emoji", false, DataSourceUpdateMode.OnPropertyChanged);
             tboDefaultMessage.DataBindings.Add("Text", _settings.DefaultStatus, "Text", false, DataSourceUpdateMode.OnPropertyChanged);
+            cboDefaultRealmEmoji.DataBindings.Add("Checked", _settings.DefaultStatus, "IsRealmEmoji", false, DataSourceUpdateMode.OnPropertyChanged);
             cboAutoStart.DataBindings.Add("Checked", _settings, "AutoStart", false, DataSourceUpdateMode.OnPropertyChanged);
             tboZulipUser.DataBindings.Add("Text", _settings, "ZulipEmail", false, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -82,5 +83,25 @@ namespace SlackStatusUpdater
             this.Dispose();
 
         }
+
+
+
+
+
+        private void btnGetAPIkey_Click(object sender, EventArgs e)
+        {
+
+            if (ZulipStatusService.GetZulipApiKey(tboZulipPassword.Text))
+            {
+
+                tboApiToken.Text = SettingsManager.GetSettings().ZulipApikey;
+                tboZulipPassword.Clear();
+                // Save changes made to settings
+                //SettingsManager.ApplySettings(_settings);
+                //this.Dispose();
+            }
+            else tboZulipPassword.Clear();
+        }
+
     }
 }
