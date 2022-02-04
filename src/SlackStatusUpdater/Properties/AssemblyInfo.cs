@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SlackStatusUpdater")]
-[assembly: AssemblyDescription("Automatic Slack status updater")]
+[assembly: AssemblyTitle("ZulipStatusUpdater")]
+[assembly: AssemblyDescription("Automatic Zulip status updater")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SlackStatusUpdater")]
-[assembly: AssemblyCopyright("Copyright © Jerri Rantio 2018")]
+[assembly: AssemblyProduct("ZulipStatusUpdater")]
+[assembly: AssemblyCopyright("Copyright © Jerri Rantio 2018 - Modified for Zulip")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

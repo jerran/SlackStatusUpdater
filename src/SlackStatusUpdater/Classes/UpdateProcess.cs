@@ -56,8 +56,6 @@ namespace ZulipStatusUpdater
             // Find out the corresponding status to be set
             var statusToSet = StatusProfileService.GetStatus(wifiNames);
 
-            
-
             // Null check and compare status to previous status. Update if changed.
             if (statusToSet != null && !statusToSet.Equals(_previousStatus))
             {

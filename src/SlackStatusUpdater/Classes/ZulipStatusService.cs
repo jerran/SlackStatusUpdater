@@ -154,41 +154,6 @@ namespace ZulipStatusUpdater
             else return false;
             
 
-            /* Get user status endpoint not implemented... 
-             * 
-
-            var client = new RestClient(SettingsManager.GetSettings().ZulipRealm + "/api/v1/users/me/status");
-
-            var request = new RestRequest(Method.POST);
-
-
-
-            var tokenString = SettingsManager.GetSettings().LegacyApiToken;
-
-            var client = new RestClient("https://slack.com/api/");
-
-            var request = new RestRequest(Method.GET);
-
-            request.Resource = "users.profile.get";
-            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddHeader("Authorization", "Bearer " + tokenString);
-            request.RequestFormat = DataFormat.Json;
-
-            var response = client.Execute(request);
-
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                return null;
-
-            dynamic content = Newtonsoft.Json.Linq.JObject.Parse(response.Content);
-
-            string emoji = content["profile"]["status_emoji"] ?? "";
-            string text = content["profile"]["status_text"] ?? "";
-
-            var status = new Status() { Text = text, Emoji = emoji };
-
-            return status;
-            */
-
         }
 
     }
