@@ -70,6 +70,7 @@ namespace SlackStatusUpdater
         /// <param name="settings">Settings to apply</param>
         public static void ApplySettings(Settings settings)
         {
+            settings.ZulipRealm = TidyUpURL(settings.ZulipRealm);
             // Write to settings file
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings));
             using (TextWriter textWriter = new StreamWriter(SettingsFilePath))
@@ -89,7 +90,10 @@ namespace SlackStatusUpdater
         {
             var defaultSettings = new Settings()
             {
-                LegacyApiToken = "EXAMPLE123",
+                
+                ZulipRealm = TidyUpURL("chat.zulipchat.com"),
+                ZulipEmail = "example@chat.zulipchat.com",
+                ZulipApikey = "EXAMPLE321",
                 DefaultStatus = new Status()
                 {
                     Emoji = ":house:",
@@ -101,12 +105,14 @@ namespace SlackStatusUpdater
                     {
                         WifiName = "HOME_WIFI",
                         Emoji = ":house:",
+                        IsRealmEmoji = false,
                         Text = "At home"
                     },
                     new StatusProfile()
                     {
                         WifiName = "OFFICE_WIFI",
                         Emoji = ":computer:",
+                        IsRealmEmoji = false,
                         Text = "At the office"
                     }
                 }
@@ -121,6 +127,19 @@ namespace SlackStatusUpdater
             {
                 xmlSerializer.Serialize(textWriter, defaultSettings);
             }
+        }
+
+        /// <summary>
+        /// Checks whether the URL includes https:// or not and adds it if necessary. Also removes any trailing slash.
+        /// </summary>
+        /// <param name="ServerURL"></param>
+        /// <returns></returns>
+        private static string TidyUpURL(string ServerURL)
+        {
+            string Result = ServerURL.StartsWith("https://") ? ServerURL : "https://" + ServerURL;
+            Result = Result.EndsWith("/") ? Result.Remove(Result.LastIndexOf('/')) : Result;
+
+            return Result;
         }
     }
 }

@@ -35,10 +35,12 @@ namespace SlackStatusUpdater
 
             // Bind other settings form controls to other settings fields.
             // Update data source as soon as data is changed on the form.
-            tboApiToken.DataBindings.Add("Text", _settings, "LegacyApiToken", false, DataSourceUpdateMode.OnPropertyChanged);
+            tboApiToken.DataBindings.Add("Text", _settings, "ZulipApikey", false, DataSourceUpdateMode.OnPropertyChanged);
+            tboZulipRealmURL.DataBindings.Add("Text", _settings, "ZulipRealm", false, DataSourceUpdateMode.OnPropertyChanged);
             tboDefaultIcon.DataBindings.Add("Text", _settings.DefaultStatus, "Emoji", false, DataSourceUpdateMode.OnPropertyChanged);
             tboDefaultMessage.DataBindings.Add("Text", _settings.DefaultStatus, "Text", false, DataSourceUpdateMode.OnPropertyChanged);
             cboAutoStart.DataBindings.Add("Checked", _settings, "AutoStart", false, DataSourceUpdateMode.OnPropertyChanged);
+            tboZulipUser.DataBindings.Add("Text", _settings, "ZulipEmail", false, DataSourceUpdateMode.OnPropertyChanged);
 
         }
 

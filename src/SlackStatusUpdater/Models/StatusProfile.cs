@@ -19,6 +19,9 @@ namespace SlackStatusUpdater.Models
         [XmlElement("emoji")]
         public string Emoji { get; set; }
 
+        [XmlElement("reaml_emoji")]
+        public bool IsRealmEmoji { get; set; }
+
         [XmlElement("text")]
         public string Text { get; set; }
 
@@ -34,7 +37,8 @@ namespace SlackStatusUpdater.Models
                 return new Status()
                 {
                     Emoji = this.Emoji,
-                    Text = this.Text
+                    Text = this.Text,
+                    IsRealmEmoji = this.IsRealmEmoji
                 };
             }
 
@@ -42,6 +46,7 @@ namespace SlackStatusUpdater.Models
             {
                 this.Emoji = value.Emoji;
                 this.Text = value.Text;
+                this.IsRealmEmoji = value.IsRealmEmoji;
             }
         }
 

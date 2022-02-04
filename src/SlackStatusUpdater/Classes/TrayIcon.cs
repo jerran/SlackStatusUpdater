@@ -27,7 +27,7 @@ namespace SlackStatusUpdater
             // Initialize NotifyIcon
             ni = new NotifyIcon();
             ni.ContextMenuStrip = ContextMenuFactory.Create();
-            ni.Icon = Resources.slackupdater_icon;
+            ni.Icon = Resources.zulip_icon;
             ni.Visible = true;
         }
 

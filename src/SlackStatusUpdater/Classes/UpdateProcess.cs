@@ -31,6 +31,7 @@ namespace SlackStatusUpdater
             _timer.Elapsed += _timer_Elapsed;
             _timer.Start();
 
+            
         }
 
         /// <summary>
@@ -55,10 +56,12 @@ namespace SlackStatusUpdater
             // Find out the corresponding status to be set
             var statusToSet = StatusProfileService.GetStatus(wifiNames);
 
+            
+
             // Null check and compare status to previous status. Update if changed.
             if (statusToSet != null && !statusToSet.Equals(_previousStatus))
             {
-                var success = SlackStatusService.SetSlackStatus(statusToSet);
+                var success = ZulipStatusService.SetZulipStatus(statusToSet);
                 if (success)
                     _previousStatus = statusToSet;
             }

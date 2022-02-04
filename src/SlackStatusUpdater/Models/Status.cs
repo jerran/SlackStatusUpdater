@@ -18,6 +18,10 @@ namespace SlackStatusUpdater.Models
         [XmlElement("text")]
         public string Text { get; set; }
 
+
+        [XmlElement("reaml_emoji")]
+        public bool IsRealmEmoji { get; set; }
+
         /// <summary>
         /// Overriden method for checking equality between statuses.
         /// </summary>
@@ -34,7 +38,7 @@ namespace SlackStatusUpdater.Models
             {
                 // Statuses are equal if emoji and text are equal
                 Status s = (Status)obj;
-                return (Emoji == s.Emoji) && (Text == s.Text);
+                return (Emoji == s.Emoji) && (Text == s.Text) && (IsRealmEmoji == s.IsRealmEmoji); ;
             }
         }
     }

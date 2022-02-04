@@ -16,6 +16,13 @@ namespace SlackStatusUpdater.Models
         [XmlElement("legacy-api-token")]
         public string LegacyApiToken { get; set; }
 
+        [XmlElement("zulip-realm")]
+        public string ZulipRealm { get; set; }
+        [XmlElement("zulip-email")]
+        public string ZulipEmail { get; set; }
+
+        [XmlElement("zulip-api-key")]
+        public string ZulipApikey { get; set; }
         /// <summary>
         /// Use XmlIgnore attribute to prevent xml serialization. This field will be bound to the
         /// actual autostart key value in the Windows registry and will not be read from or
