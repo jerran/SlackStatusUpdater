@@ -1,3 +1,19 @@
+# ZulipStatusUpdater
+
+I made some changes to Jerri Rantio's great SlackStatusUpdater so it can be used for Zulip (a Slack alternative). 
+
+### Changes to the original project
+* Removed functionality to get current set status, as Zulip doesn't have the endpoint available atm. This means that the quicksave had to go.
+* Added functionality to get API-key by entering email and password.
+* Added boolean to set if the selected emoji is a realm specific emoji.
+* The Wifi check is performed by scanning available networks. You doesn't have to be connected to a specific network to trigger a rule.
+* Changed the icon.. 
+* Uses [ManagedNativeWifi](https://github.com/emoacht/ManagedNativeWifi) instead of [ManagedWifi](https://archive.codeplex.com/?p=managedwifi)
+
+Thank you Jerri!
+
+---
+
 # SlackStatusUpdater
 ## Project description
 
@@ -36,8 +52,8 @@ connected to.
 * Inno Setup 5.6.1 or newer
 
 ## Built With
-* [RestSharp](http://restsharp.org/) – A simple REST and HTTP Client for .NET
-* [ManagedWifi](https://archive.codeplex.com/?p=managedwifi) – A .NET managed wrapper around the Windows Native Wifi API.
+* [RestSharp](http://restsharp.org/) â€“ A simple REST and HTTP Client for .NET
+* [ManagedWifi](https://archive.codeplex.com/?p=managedwifi) â€“ A .NET managed wrapper around the Windows Native Wifi API.
 * [Json.NET](https://www.newtonsoft.com/json) - Popular high-performance JSON framework for .NET
 
 ## Authors
