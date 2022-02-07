@@ -94,10 +94,12 @@ namespace ZulipStatusUpdater
                 ZulipRealm = TidyUpURL("chat.zulipchat.com"),
                 ZulipEmail = "example@example.com",
                 ZulipApikey = "Enter password and press Get API key",
+                local_server = "192.168.111.100",
                 DefaultStatus = new Status()
                 {
                     Emoji = "house",
                     Text = "Working remotely",
+                    SendIP = false,
                     IsRealmEmoji = false
                 },
                 StatusProfiles = new List<StatusProfile>()
@@ -107,6 +109,7 @@ namespace ZulipStatusUpdater
                         WifiName = "HOME_WIFI",
                         Emoji = "house",
                         IsRealmEmoji = false,
+                        SendIP = false,
                         Text = "At home"
                     },
                     new StatusProfile()
@@ -114,6 +117,7 @@ namespace ZulipStatusUpdater
                         WifiName = "OFFICE_WIFI",
                         Emoji = "computer",
                         IsRealmEmoji = false,
+                        SendIP = false,
                         Text = "At the office"
                     }
                 }

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Net.NetworkInformation;
+using System.Net;
+using System.Net.Sockets;
 
 namespace ZulipStatusUpdater
 {
@@ -16,6 +19,8 @@ namespace ZulipStatusUpdater
         private static Timer _timer;
 
         private static Status _previousStatus;
+
+        private static string _previousIP;
 
         /// <summary>
         /// Start process
@@ -53,15 +58,24 @@ namespace ZulipStatusUpdater
             // Get connected SSIDs
             var wifiNames = NetworkCheck.GetWifiConnectionSSIDs();
 
+            string localIP;
+            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            {
+                socket.Connect(SettingsManager.GetSettings().local_server, 65530);
+                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                localIP = endPoint.Address.ToString();
+            }
+
             // Find out the corresponding status to be set
             var statusToSet = StatusProfileService.GetStatus(wifiNames);
 
             // Null check and compare status to previous status. Update if changed.
-            if (statusToSet != null && !statusToSet.Equals(_previousStatus))
+            if (statusToSet != null && (!statusToSet.Equals(_previousStatus)) || !localIP.Equals(_previousIP))
             {
-                var success = ZulipStatusService.SetZulipStatus(statusToSet);
+                var success = ZulipStatusService.SetZulipStatus(statusToSet, localIP);
                 if (success)
                     _previousStatus = statusToSet;
+                    _previousIP = localIP;
             }
 
         }

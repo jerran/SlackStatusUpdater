@@ -22,6 +22,11 @@ namespace ZulipStatusUpdater.Models
         [XmlElement("realm_emoji")]
         public bool IsRealmEmoji { get; set; }
 
+
+        [XmlElement("send_ip")]
+        public bool SendIP { get; set; }
+        
+
         /// <summary>
         /// Overriden method for checking equality between statuses.
         /// </summary>

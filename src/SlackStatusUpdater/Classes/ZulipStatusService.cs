@@ -10,6 +10,7 @@ using Newtonsoft.Json.Serialization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
+using System.Net.Sockets;
 
 namespace ZulipStatusUpdater
 {
@@ -23,23 +24,18 @@ namespace ZulipStatusUpdater
         /// </summary>
         /// <param name="status">Status to set</param>
         /// <returns>Status setting success</returns>
-        public static bool SetZulipStatus(Status status)
+        public static bool SetZulipStatus(Status status, string localIP)
         {
-            //ZulipAPI.ZulipServer Zerv = new ZulipAPI.ZulipServer(SettingsManager.GetSettings().ZulipRealm);
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
-            //Dictionary< string, string> data)
-
             var formData = new List<KeyValuePair<string, string>>() {
-                new KeyValuePair<string, string>("status_text", status.Text),
+                new KeyValuePair<string, string>("status_text", (status.SendIP ? status.Text +" "+  localIP: status.Text)),
                 new KeyValuePair<string, string>("emoji_name", status.Emoji),
                 /*new KeyValuePair<string, string>("emoji_code", "1f697"),*/
                 /*new KeyValuePair<string, string>("reaction_type", "unicode_emoji"),*/
                 new KeyValuePair<string, string>("reaction_type", (status.IsRealmEmoji ? "realm_emoji":"unicode_emoji"))
             };
 
-
-            //var client = new RestClient("https://jli.zulipchat.com/api/v1/users/me/status");
             var client = new RestClient(SettingsManager.GetSettings().ZulipRealm +"/api/v1/users/me/status");
             client.Authenticator = new HttpBasicAuthenticator(SettingsManager.GetSettings().ZulipEmail, SettingsManager.GetSettings().ZulipApikey);
 
@@ -51,13 +47,9 @@ namespace ZulipStatusUpdater
                 request.AddParameter(p.Key, p.Value);
             }
 
-
             var response = client.Execute(request);
 
             return response.StatusCode == System.Net.HttpStatusCode.OK;
-
-
-            //return response.StatusCode == System.Net.HttpStatusCode.OK;
         }
 
         /// <summary>

@@ -50,6 +50,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnGetAPIkey = new System.Windows.Forms.Button();
             this.cboDefaultRealmEmoji = new System.Windows.Forms.CheckBox();
+            this.cboDefaultSendIP = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -236,11 +237,22 @@
             this.cboDefaultRealmEmoji.Text = "Realm emoji";
             this.cboDefaultRealmEmoji.UseVisualStyleBackColor = true;
             // 
+            // cboDefaultSendIP
+            // 
+            this.cboDefaultSendIP.AutoSize = true;
+            this.cboDefaultSendIP.Location = new System.Drawing.Point(184, 329);
+            this.cboDefaultSendIP.Name = "cboDefaultSendIP";
+            this.cboDefaultSendIP.Size = new System.Drawing.Size(64, 17);
+            this.cboDefaultSendIP.TabIndex = 22;
+            this.cboDefaultSendIP.Text = "Send IP";
+            this.cboDefaultSendIP.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 374);
+            this.Controls.Add(this.cboDefaultSendIP);
             this.Controls.Add(this.cboDefaultRealmEmoji);
             this.Controls.Add(this.btnGetAPIkey);
             this.Controls.Add(this.label9);
@@ -297,5 +309,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnGetAPIkey;
         private System.Windows.Forms.CheckBox cboDefaultRealmEmoji;
+        private System.Windows.Forms.CheckBox cboDefaultSendIP;
     }
 }

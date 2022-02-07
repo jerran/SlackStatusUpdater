@@ -23,6 +23,10 @@ namespace ZulipStatusUpdater.Models
 
         [XmlElement("zulip-api-key")]
         public string ZulipApikey { get; set; }
+
+        [XmlElement("local-server")]
+        public string local_server { get; set; }
+
         /// <summary>
         /// Use XmlIgnore attribute to prevent xml serialization. This field will be bound to the
         /// actual autostart key value in the Windows registry and will not be read from or

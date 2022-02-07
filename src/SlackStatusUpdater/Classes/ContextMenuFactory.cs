@@ -14,6 +14,7 @@ namespace ZulipStatusUpdater
     {
         // Private field for the settings form to help ensure only one instance of it is opened
         private static SettingsForm _settingsForm;
+        
 
         /// <summary>
         /// Create the context menu for the tray icon.
@@ -22,6 +23,7 @@ namespace ZulipStatusUpdater
         public static ContextMenuStrip Create()
         {
             ContextMenuStrip cms = new ContextMenuStrip();
+
 
             /*
             // Quick set profile
