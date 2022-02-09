@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace ZulipStatusUpdater
 {
@@ -24,6 +25,7 @@ namespace ZulipStatusUpdater
         private SettingsForm()
         {
             InitializeComponent();
+            this.Text = WindowTitle;
 
             // Get settings
             _settings = SettingsManager.GetSettings();
@@ -43,7 +45,7 @@ namespace ZulipStatusUpdater
             cboDefaultSendIP.DataBindings.Add("Checked", _settings.DefaultStatus, "SendIP", false, DataSourceUpdateMode.OnPropertyChanged);
             cboAutoStart.DataBindings.Add("Checked", _settings, "AutoStart", false, DataSourceUpdateMode.OnPropertyChanged);
             tboZulipUser.DataBindings.Add("Text", _settings, "ZulipEmail", false, DataSourceUpdateMode.OnPropertyChanged);
-
+            cboUsewifi.DataBindings.Add("Checked", _settings, "useWifi", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         /// <summary>
@@ -86,9 +88,6 @@ namespace ZulipStatusUpdater
         }
 
 
-
-
-
         private void btnGetAPIkey_Click(object sender, EventArgs e)
         {
             SettingsManager.ApplySettings(_settings);
@@ -103,6 +102,15 @@ namespace ZulipStatusUpdater
                 //this.Dispose();
             }
             else tboZulipPassword.Clear();
+        }
+
+        public string WindowTitle
+        {
+            get
+            {
+                Version version = Assembly.GetExecutingAssembly().GetName().Version;
+                return "ZulipStatusUpdater v" + version;
+            }
         }
 
     }

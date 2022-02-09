@@ -58,17 +58,18 @@ namespace ZulipStatusUpdater
             // Get connected SSIDs
             var wifiNames = NetworkCheck.GetWifiConnectionSSIDs();
 
-            string localIP;
-            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
-            {
-                socket.Connect(SettingsManager.GetSettings().local_server, 65530);
-                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-                localIP = endPoint.Address.ToString();
-            }
+            string localIP = NetworkCheck.GetCurrentIP();
+
+            var statusToSet = SettingsManager.GetSettings().DefaultStatus;
 
             // Find out the corresponding status to be set
-            var statusToSet = StatusProfileService.GetStatus(wifiNames);
-
+            if (SettingsManager.GetSettings().usewifi) {
+                statusToSet = StatusProfileService.GetStatusWifi(wifiNames);
+            }
+            else
+            {
+                statusToSet = StatusProfileService.GetStatusIP(localIP);
+            }
             // Null check and compare status to previous status. Update if changed.
             if (statusToSet != null && (!statusToSet.Equals(_previousStatus)) || !localIP.Equals(_previousIP))
             {

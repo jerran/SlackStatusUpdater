@@ -107,6 +107,7 @@ namespace ZulipStatusUpdater
                     new StatusProfile()
                     {
                         WifiName = "HOME_WIFI",
+                        networkip = "192.168.145.0/24",
                         Emoji = "house",
                         IsRealmEmoji = false,
                         SendIP = false,
@@ -115,6 +116,7 @@ namespace ZulipStatusUpdater
                     new StatusProfile()
                     {
                         WifiName = "OFFICE_WIFI",
+                        networkip = "192.168.111.0/24",
                         Emoji = "computer",
                         IsRealmEmoji = false,
                         SendIP = false,

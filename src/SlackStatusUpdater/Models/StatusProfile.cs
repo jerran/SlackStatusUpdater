@@ -16,6 +16,9 @@ namespace ZulipStatusUpdater.Models
         [XmlElement("wifi-name")]
         public string WifiName { get; set; }
 
+        [XmlElement("network-ip")]
+        public string networkip { get; set; }
+
         [XmlElement("emoji")]
         public string Emoji { get; set; }
 

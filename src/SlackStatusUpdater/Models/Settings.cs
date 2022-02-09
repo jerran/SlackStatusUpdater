@@ -18,6 +18,7 @@ namespace ZulipStatusUpdater.Models
 
         [XmlElement("zulip-realm")]
         public string ZulipRealm { get; set; }
+
         [XmlElement("zulip-email")]
         public string ZulipEmail { get; set; }
 
@@ -26,6 +27,10 @@ namespace ZulipStatusUpdater.Models
 
         [XmlElement("local-server")]
         public string local_server { get; set; }
+
+        [XmlElement("use-wifi")]
+        public bool usewifi { get; set; }
+
 
         /// <summary>
         /// Use XmlIgnore attribute to prevent xml serialization. This field will be bound to the

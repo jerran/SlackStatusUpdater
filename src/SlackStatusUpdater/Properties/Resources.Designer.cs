@@ -63,19 +63,9 @@ namespace ZulipStatusUpdater.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon slackupdater_icon {
+        internal static System.Drawing.Icon zulipicon {
             get {
-                object obj = ResourceManager.GetObject("slackupdater_icon", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon zulip_icon {
-            get {
-                object obj = ResourceManager.GetObject("zulip_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("zulipicon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

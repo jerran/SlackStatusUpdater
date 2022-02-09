@@ -51,6 +51,7 @@
             this.btnGetAPIkey = new System.Windows.Forms.Button();
             this.cboDefaultRealmEmoji = new System.Windows.Forms.CheckBox();
             this.cboDefaultSendIP = new System.Windows.Forms.CheckBox();
+            this.cboUsewifi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +69,8 @@
             this.tboApiToken.Location = new System.Drawing.Point(465, 35);
             this.tboApiToken.Name = "tboApiToken";
             this.tboApiToken.Size = new System.Drawing.Size(202, 20);
-            this.tboApiToken.TabIndex = 1;
+            this.tboApiToken.TabIndex = 10;
+            this.tboApiToken.UseSystemPasswordChar = true;
             // 
             // dgWifi
             // 
@@ -77,7 +79,7 @@
             this.dgWifi.Location = new System.Drawing.Point(11, 131);
             this.dgWifi.Name = "dgWifi";
             this.dgWifi.Size = new System.Drawing.Size(710, 153);
-            this.dgWifi.TabIndex = 2;
+            this.dgWifi.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -94,9 +96,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(11, 115);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Wifi Profiles:";
+            this.label2.Text = "Profiles:";
             // 
             // btnCancel
             // 
@@ -110,14 +112,14 @@
             // 
             // tboDefaultIcon
             // 
-            this.tboDefaultIcon.Location = new System.Drawing.Point(95, 303);
+            this.tboDefaultIcon.Location = new System.Drawing.Point(93, 315);
             this.tboDefaultIcon.Name = "tboDefaultIcon";
             this.tboDefaultIcon.Size = new System.Drawing.Size(161, 20);
             this.tboDefaultIcon.TabIndex = 6;
             // 
             // tboDefaultMessage
             // 
-            this.tboDefaultMessage.Location = new System.Drawing.Point(262, 303);
+            this.tboDefaultMessage.Location = new System.Drawing.Point(260, 315);
             this.tboDefaultMessage.Name = "tboDefaultMessage";
             this.tboDefaultMessage.Size = new System.Drawing.Size(161, 20);
             this.tboDefaultMessage.TabIndex = 7;
@@ -125,7 +127,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 306);
+            this.label3.Location = new System.Drawing.Point(10, 318);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 8;
@@ -134,7 +136,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(92, 287);
+            this.label4.Location = new System.Drawing.Point(90, 299);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 9;
@@ -143,7 +145,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(259, 287);
+            this.label5.Location = new System.Drawing.Point(257, 299);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 13);
             this.label5.TabIndex = 10;
@@ -152,7 +154,7 @@
             // cboAutoStart
             // 
             this.cboAutoStart.AutoSize = true;
-            this.cboAutoStart.Location = new System.Drawing.Point(510, 305);
+            this.cboAutoStart.Location = new System.Drawing.Point(492, 318);
             this.cboAutoStart.Name = "cboAutoStart";
             this.cboAutoStart.Size = new System.Drawing.Size(212, 17);
             this.cboAutoStart.TabIndex = 12;
@@ -230,7 +232,7 @@
             // cboDefaultRealmEmoji
             // 
             this.cboDefaultRealmEmoji.AutoSize = true;
-            this.cboDefaultRealmEmoji.Location = new System.Drawing.Point(95, 329);
+            this.cboDefaultRealmEmoji.Location = new System.Drawing.Point(93, 341);
             this.cboDefaultRealmEmoji.Name = "cboDefaultRealmEmoji";
             this.cboDefaultRealmEmoji.Size = new System.Drawing.Size(83, 17);
             this.cboDefaultRealmEmoji.TabIndex = 21;
@@ -240,18 +242,29 @@
             // cboDefaultSendIP
             // 
             this.cboDefaultSendIP.AutoSize = true;
-            this.cboDefaultSendIP.Location = new System.Drawing.Point(184, 329);
+            this.cboDefaultSendIP.Location = new System.Drawing.Point(182, 341);
             this.cboDefaultSendIP.Name = "cboDefaultSendIP";
             this.cboDefaultSendIP.Size = new System.Drawing.Size(64, 17);
             this.cboDefaultSendIP.TabIndex = 22;
             this.cboDefaultSendIP.Text = "Send IP";
             this.cboDefaultSendIP.UseVisualStyleBackColor = true;
             // 
+            // cboUsewifi
+            // 
+            this.cboUsewifi.AutoSize = true;
+            this.cboUsewifi.Location = new System.Drawing.Point(492, 295);
+            this.cboUsewifi.Name = "cboUsewifi";
+            this.cboUsewifi.Size = new System.Drawing.Size(229, 17);
+            this.cboUsewifi.TabIndex = 23;
+            this.cboUsewifi.Text = "Determine status on available wifi networks";
+            this.cboUsewifi.UseVisualStyleBackColor = true;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 374);
+            this.Controls.Add(this.cboUsewifi);
             this.Controls.Add(this.cboDefaultSendIP);
             this.Controls.Add(this.cboDefaultRealmEmoji);
             this.Controls.Add(this.btnGetAPIkey);
@@ -310,5 +323,6 @@
         private System.Windows.Forms.Button btnGetAPIkey;
         private System.Windows.Forms.CheckBox cboDefaultRealmEmoji;
         private System.Windows.Forms.CheckBox cboDefaultSendIP;
+        private System.Windows.Forms.CheckBox cboUsewifi;
     }
 }
