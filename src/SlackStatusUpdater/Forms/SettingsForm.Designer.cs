@@ -70,7 +70,6 @@
             this.tboApiToken.Name = "tboApiToken";
             this.tboApiToken.Size = new System.Drawing.Size(202, 20);
             this.tboApiToken.TabIndex = 10;
-            this.tboApiToken.UseSystemPasswordChar = true;
             // 
             // dgWifi
             // 
