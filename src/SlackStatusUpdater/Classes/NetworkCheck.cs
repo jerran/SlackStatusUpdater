@@ -29,7 +29,13 @@ namespace ZulipStatusUpdater
         public static List<string> GetWifiConnectionSSIDs()
         {
             List<String> connectedSsids = new List<string>();
-            
+
+            var wifiAvailable = NativeWifi.EnumerateInterfaces();
+
+            if(wifiAvailable is null)
+            {
+                return connectedSsids;
+            }
 
             foreach (NetworkIdentifier ssid in NativeWifi.EnumerateAvailableNetworkSsids())
             {
@@ -45,9 +51,17 @@ namespace ZulipStatusUpdater
             string localIP;
             using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
             {
-                socket.Connect(SettingsManager.GetSettings().local_server, 65530);
-                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-                localIP = endPoint.Address.ToString();
+                try
+                {
+                    socket.Connect(SettingsManager.GetSettings().local_server, 65530);
+                    IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                    localIP = endPoint.Address.ToString();
+                }
+                catch{
+                    // If no connection, return localhost for now.
+                    localIP = "127.0.0.1";
+                };
+
             }
             return localIP;
         }
