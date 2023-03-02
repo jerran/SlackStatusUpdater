@@ -14,8 +14,8 @@ namespace ZulipStatusUpdater
     {
         // Private field for the settings form to help ensure only one instance of it is opened
         private static SettingsForm _settingsForm;
+        public static bool test_bool;
         
-
         /// <summary>
         /// Create the context menu for the tray icon.
         /// </summary>
@@ -31,10 +31,20 @@ namespace ZulipStatusUpdater
             quickSave.Click += QuickSave_Click;
             cms.Items.Add(quickSave);*/
 
+            
             // Settings selection
             ToolStripMenuItem settingsItem = new ToolStripMenuItem("Settings");
             settingsItem.Click += SettingsItem_Click;
             cms.Items.Add(settingsItem);
+
+            //Disable program temporary
+            ToolStripMenuItem disableItem = new ToolStripMenuItem("Disable program");
+            disableItem.CheckOnClick = true;
+            //test_bool = disableItem.Checked;
+            //disableItem.CheckedChanged += disableItem_Changed();
+            
+          
+            cms.Items.Add(disableItem);
 
             // Exit selection
             ToolStripMenuItem exitItem = new ToolStripMenuItem("Exit");
@@ -43,6 +53,7 @@ namespace ZulipStatusUpdater
 
             return cms;
         }
+
 
         /// <summary>
         /// Handle QuickSave click event
@@ -71,6 +82,16 @@ namespace ZulipStatusUpdater
                 _settingsForm.ShowDialog();
                 _settingsForm.Dispose();
             }
+        }
+
+        /// <summary>
+        /// Handle Disable item checked changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void disableItem_Changed(object sender, EventArgs e)
+        {
+            SettingsManager.GetSettings().disableStatusUpdate = test_bool;
         }
 
 

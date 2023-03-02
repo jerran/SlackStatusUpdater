@@ -112,6 +112,7 @@ namespace ZulipStatusUpdater
             var username = SettingsManager.GetSettings().ZulipEmail;
 
             var client = new RestClient(SettingsManager.GetSettings().ZulipRealm + "/api/v1/fetch_api_key");
+            client.UserAgent = "ZulipStatusUpdater";
 
             var formData = new List<KeyValuePair<string, string>>() {
                 new KeyValuePair<string, string>("username", SettingsManager.GetSettings().ZulipEmail),
@@ -148,5 +149,14 @@ namespace ZulipStatusUpdater
 
         }
 
+
+
+        /// <summary>
+        /// Get API key by SSO
+        /// </summary>
+        /// <returns>Sets the API-key in the settings by SSO</returns>
+        //https://chat.zulip.org/#narrow/stream/16-desktop/topic/desktop.20app.20OAuth/near/803919
+        
+        //public static bool GoogleSSOLogin() { return true; }
     }
 }

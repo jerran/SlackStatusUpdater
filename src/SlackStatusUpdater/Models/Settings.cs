@@ -28,6 +28,10 @@ namespace ZulipStatusUpdater.Models
         [XmlElement("local-server")]
         public string local_server { get; set; }
 
+        [XmlElement("disable-status-update")]
+        public bool disableStatusUpdate { get; set; }
+
+
         [XmlElement("use-wifi")]
         public bool usewifi { get; set; }
 

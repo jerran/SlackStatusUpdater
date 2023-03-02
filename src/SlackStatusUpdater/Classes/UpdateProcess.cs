@@ -8,6 +8,7 @@ using System.Timers;
 using System.Net.NetworkInformation;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Principal;
 
 namespace ZulipStatusUpdater
 {
@@ -48,6 +49,7 @@ namespace ZulipStatusUpdater
         {
             // Execute the update process
             Execute();
+            
         }
 
         /// <summary>
@@ -55,15 +57,15 @@ namespace ZulipStatusUpdater
         /// </summary>
         public static void Execute()
         {
-            // Get connected SSIDs
-            var wifiNames = NetworkCheck.GetWifiConnectionSSIDs();
-
+            
             string localIP = NetworkCheck.GetCurrentIP();
 
             var statusToSet = SettingsManager.GetSettings().DefaultStatus;
 
             // Find out the corresponding status to be set
             if (SettingsManager.GetSettings().usewifi) {
+                // Get connected SSIDs
+                var wifiNames = NetworkCheck.GetWifiConnectionSSIDs();
                 statusToSet = StatusProfileService.GetStatusWifi(wifiNames);
             }
             else

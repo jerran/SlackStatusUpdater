@@ -14,16 +14,15 @@ namespace ZulipStatusUpdater
         [STAThread]
         static void Main()
         {
-
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            
             // Make sure tray icon is disposed when application exits
             using (TrayIcon trayIcon = new TrayIcon())
             {
                 // Start automatic status updates process
                 UpdateProcess.Start();
-
                 // Make sure the application runs!
                 Application.Run();
             }

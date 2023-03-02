@@ -47,5 +47,14 @@ namespace ZulipStatusUpdater
         {
             UpdateProcess.Execute();
         }
+
+        public void Show_Ballon(string text)
+        {
+            
+            int timeout = 3;
+            ToolTipIcon icon = new ToolTipIcon();
+            ni.ShowBalloonTip(timeout,text,text,icon);
+
+        }
     }
 }
