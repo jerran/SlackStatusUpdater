@@ -36,15 +36,13 @@ namespace ZulipStatusUpdater
             TrayIcon = new NotifyIcon();
             TrayIcon.Text = Constants.NAME_OF_APP;
 
-            //The icon is added to the project resources.
-            //Here, I assume that the name of the file is 'TrayIcon.ico'
             TrayIcon.Icon = Properties.Resources.zulipicon;
 
-            //Optional - handle doubleclicks on the icon:
+            //handle clicks on the icon:
             TrayIcon.DoubleClick += TrayIcon_DoubleClick;
-            TrayIcon.Click += TrayIcon_Click;
+            TrayIcon.MouseClick += TrayIcon_LeftClick;
 
-            //Optional - Add a context menu to the TrayIcon:
+            //Add a context menu to the TrayIcon:
             TrayIconContextMenu = new ContextMenuStrip();
             SettingsMenuItem = new ToolStripMenuItem();
             DisableMenuItem = new ToolStripMenuItem();
@@ -60,8 +58,7 @@ namespace ZulipStatusUpdater
             this.CloseMenuItem});
 
             this.TrayIconContextMenu.Name = "TrayIconContextMenu";
-            //this.TrayIconContextMenu.Size = new Size(153, 70);
-
+           
             // 
             // SettingsMenuItem
             // 
@@ -70,19 +67,12 @@ namespace ZulipStatusUpdater
             this.SettingsMenuItem.Click += new EventHandler(this.SettingsItem_Click);
 
             // 
-            // SettingsMenuItem
+            // DisableSettingsMenu
             // 
             this.DisableMenuItem.Name = "DisableMenuItem";
             this.DisableMenuItem.Text = "Disable";
             this.DisableMenuItem.CheckOnClick = true;
             this.DisableMenuItem.Click += new EventHandler(this.DisableItem_Click);
-
-
-            //Disable program temporary
-            //ToolStripMenuItem disableItem = new ToolStripMenuItem("Disable program");
-            //disableItem.CheckOnClick = true;
-            //test_bool = disableItem.Checked;
-            //disableItem.CheckedChanged += disableItem_Changed();
 
             // 
             // CloseMenuItem
@@ -107,21 +97,21 @@ namespace ZulipStatusUpdater
             //TrayIcon.ShowBalloonTip(10000);
         }
 
-        private void TrayIcon_Click(object sender, EventArgs e)
+        private void TrayIcon_LeftClick(object sender, EventArgs e)
         {
-            //Here, you can do stuff if the tray icon is doubleclicked
+            MouseEventArgs me = (MouseEventArgs)e;
+            if(me.Button == MouseButtons.Left)
+            { 
+            Say("Force updating status");
             UpdateProcess.Execute();
+            }
         }
 
         private void CloseMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you really want to close me?",
-                    "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
                 Application.Exit();
-            }
         }
+
         private void DisableItem_Click(object sender, EventArgs e)
         {
             var settings = SettingsManager.GetSettings();
@@ -129,7 +119,6 @@ namespace ZulipStatusUpdater
             SettingsManager.ApplySettings(settings);
             Say(SettingsManager.GetSettings().disableStatusUpdate.ToString());
         }
-
 
         public void Say(string text, ToolTipIcon icon = ToolTipIcon.Info)
         {
