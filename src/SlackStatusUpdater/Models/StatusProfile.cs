@@ -22,9 +22,6 @@ namespace ZulipStatusUpdater.Models
         [XmlElement("emoji")]
         public string Emoji { get; set; }
 
-        [XmlElement("realm_emoji")]
-        public bool IsRealmEmoji { get; set; }
-
         [XmlElement("send_ip")]
         public bool SendIP { get; set; }
 
@@ -44,7 +41,6 @@ namespace ZulipStatusUpdater.Models
                 {
                     Emoji = this.Emoji,
                     Text = this.Text,
-                    IsRealmEmoji = this.IsRealmEmoji,
                     SendIP = this.SendIP
                 };
             }
@@ -53,7 +49,6 @@ namespace ZulipStatusUpdater.Models
             {
                 this.Emoji = value.Emoji;
                 this.Text = value.Text;
-                this.IsRealmEmoji = value.IsRealmEmoji;
                 this.SendIP = value.SendIP;
             }
         }

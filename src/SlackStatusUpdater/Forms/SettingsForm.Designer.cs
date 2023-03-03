@@ -49,7 +49,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnGetAPIkey = new System.Windows.Forms.Button();
-            this.cboDefaultRealmEmoji = new System.Windows.Forms.CheckBox();
             this.cboDefaultSendIP = new System.Windows.Forms.CheckBox();
             this.cboUsewifi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).BeginInit();
@@ -228,16 +227,6 @@
             this.btnGetAPIkey.UseVisualStyleBackColor = true;
             this.btnGetAPIkey.Click += new System.EventHandler(this.btnGetAPIkey_Click);
             // 
-            // cboDefaultRealmEmoji
-            // 
-            this.cboDefaultRealmEmoji.AutoSize = true;
-            this.cboDefaultRealmEmoji.Location = new System.Drawing.Point(93, 341);
-            this.cboDefaultRealmEmoji.Name = "cboDefaultRealmEmoji";
-            this.cboDefaultRealmEmoji.Size = new System.Drawing.Size(83, 17);
-            this.cboDefaultRealmEmoji.TabIndex = 21;
-            this.cboDefaultRealmEmoji.Text = "Realm emoji";
-            this.cboDefaultRealmEmoji.UseVisualStyleBackColor = true;
-            // 
             // cboDefaultSendIP
             // 
             this.cboDefaultSendIP.AutoSize = true;
@@ -265,7 +254,6 @@
             this.ClientSize = new System.Drawing.Size(734, 374);
             this.Controls.Add(this.cboUsewifi);
             this.Controls.Add(this.cboDefaultSendIP);
-            this.Controls.Add(this.cboDefaultRealmEmoji);
             this.Controls.Add(this.btnGetAPIkey);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -320,7 +308,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnGetAPIkey;
-        private System.Windows.Forms.CheckBox cboDefaultRealmEmoji;
         private System.Windows.Forms.CheckBox cboDefaultSendIP;
         private System.Windows.Forms.CheckBox cboUsewifi;
     }

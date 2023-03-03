@@ -19,9 +19,6 @@ namespace ZulipStatusUpdater.Models
         public string Text { get; set; }
 
 
-        [XmlElement("realm_emoji")]
-        public bool IsRealmEmoji { get; set; }
-
 
         [XmlElement("send_ip")]
         public bool SendIP { get; set; }
@@ -43,7 +40,7 @@ namespace ZulipStatusUpdater.Models
             {
                 // Statuses are equal if emoji and text are equal
                 Status s = (Status)obj;
-                return (Emoji == s.Emoji) && (Text == s.Text) && (IsRealmEmoji == s.IsRealmEmoji); ;
+                return (Emoji == s.Emoji) && (Text == s.Text);
             }
         }
     }

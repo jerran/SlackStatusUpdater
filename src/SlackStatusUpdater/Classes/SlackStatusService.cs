@@ -33,7 +33,7 @@ namespace ZulipStatusUpdater
             request.AddHeader("Authorization", "Bearer " + tokenString);
             request.RequestFormat = DataFormat.Json;
 
-            request.AddBody(
+            request.AddJsonBody(
                 new
                 {
                     profile = new

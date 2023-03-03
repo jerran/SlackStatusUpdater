@@ -191,9 +191,6 @@ namespace ZulipStatusUpdater
 
         }
 
-
-
-
         /// <summary>
         /// Get API key by SSO
         /// </summary>

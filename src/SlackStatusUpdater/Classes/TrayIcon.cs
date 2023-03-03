@@ -117,7 +117,7 @@ namespace ZulipStatusUpdater
             var settings = SettingsManager.GetSettings();
             settings.disableStatusUpdate = DisableMenuItem.Checked;
             SettingsManager.ApplySettings(settings);
-            Say(SettingsManager.GetSettings().disableStatusUpdate.ToString());
+            Say("Updates "+(SettingsManager.GetSettings().disableStatusUpdate ? "disabled": "enabled"));
         }
 
         public void Say(string text, ToolTipIcon icon = ToolTipIcon.Info)
