@@ -34,8 +34,9 @@ namespace ZulipStatusUpdater
                 new KeyValuePair<string, string>("emoji_name", status.Emoji),
                 /*new KeyValuePair<string, string>("emoji_code", "1f697"),*/
                 /*new KeyValuePair<string, string>("reaction_type", "unicode_emoji"),*/
-                new KeyValuePair<string, string>("reaction_type", (status.IsRealmEmoji ? "realm_emoji":"unicode_emoji"))
+                new KeyValuePair<string, string>("reaction_type",(GetRealmEmojis().Contains(status.Emoji) ? "realm_emoji":"unicode_emoji"))
             };
+
 
             var client = new RestClient(SettingsManager.GetSettings().ZulipRealm +"/api/v1/users/me/status");
             client.Authenticator = new HttpBasicAuthenticator(SettingsManager.GetSettings().ZulipEmail, SettingsManager.GetSettings().ZulipApikey);
@@ -166,13 +167,8 @@ namespace ZulipStatusUpdater
             client.UserAgent = "ZulipStatusUpdater";
 
             client.Authenticator = new HttpBasicAuthenticator(SettingsManager.GetSettings().ZulipEmail, SettingsManager.GetSettings().ZulipApikey);
-
-
             var request = new RestRequest(Method.GET);
-
-           
             var response = client.Execute(request);
-
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 return new List<string>(0);
@@ -189,8 +185,6 @@ namespace ZulipStatusUpdater
                     }
                 }
             }
-
-            
             if (content["result"] == "success") return ListOfRealmEmojis;
            else return new List<string>(0);
 
