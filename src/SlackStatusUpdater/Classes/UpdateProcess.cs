@@ -59,6 +59,7 @@ namespace ZulipStatusUpdater
         public static void Execute()
         {
 
+            ZulipStatusService.GetCustomProfileFields();
             if (!SettingsManager.GetSettings().disableStatusUpdate)
             {
                 string localIP = NetworkCheck.GetCurrentIP();

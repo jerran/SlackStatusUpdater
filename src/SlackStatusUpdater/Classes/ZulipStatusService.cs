@@ -192,6 +192,44 @@ namespace ZulipStatusUpdater
         }
 
         /// <summary>
+        /// Get Custom profile fields
+        /// </summary>
+        /// <returns>list of custom profile fields</returns>
+        public static List<string> GetCustomProfileFields()
+        {
+            List<string> ListOfProfileFields = new List<string>(0);
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+            var username = SettingsManager.GetSettings().ZulipEmail;
+
+            var client = new RestClient(SettingsManager.GetSettings().ZulipRealm + "/api/v1/realm/profile_fields");
+            client.UserAgent = "ZulipStatusUpdater";
+
+            client.Authenticator = new HttpBasicAuthenticator(SettingsManager.GetSettings().ZulipEmail, SettingsManager.GetSettings().ZulipApikey);
+            var request = new RestRequest(Method.GET);
+            var response = client.Execute(request);
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                return new List<string>(0);
+
+            dynamic content = Newtonsoft.Json.Linq.JObject.Parse(response.Content);
+            foreach (var fields in content.custom_fields)
+            {
+                foreach (var field in fields)
+                {
+                        ListOfProfileFields.Add((string)field.name);
+
+                }
+            }
+            if (content["result"] == "success") return ListOfProfileFields;
+            else return new List<string>(0);
+
+
+        }
+
+
+        /// <summary>
         /// Get API key by SSO
         /// </summary>
         /// <returns>Sets the API-key in the settings by SSO</returns>
