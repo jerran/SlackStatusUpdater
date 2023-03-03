@@ -6,26 +6,31 @@ using System.Windows.Forms;
 
 namespace ZulipStatusUpdater
 {
+    public static class Constants
+    {
+        public static readonly string NAME_OF_APP = "ZulipStatusUpdater";
+
+
+    }
     static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        public static RunIcon runicon;
         [STAThread]
         static void Main()
         {
-            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            // Make sure tray icon is disposed when application exits
-            using (TrayIcon trayIcon = new TrayIcon())
-            {
-                // Start automatic status updates process
-                UpdateProcess.Start();
-                // Make sure the application runs!
-                Application.Run();
-            }
+
+            runicon = new RunIcon();
+            // Start automatic status updates process
+            UpdateProcess.Start();
+            // Make sure the application runs!
+            Application.Run(Program.runicon);
+
+
         }
     }
 }

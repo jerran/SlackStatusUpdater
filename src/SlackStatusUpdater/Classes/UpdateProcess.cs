@@ -9,6 +9,8 @@ using System.Net.NetworkInformation;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Principal;
+using System.Windows.Forms;
+using Timer = System.Timers.Timer;
 
 namespace ZulipStatusUpdater
 {
@@ -17,7 +19,7 @@ namespace ZulipStatusUpdater
     /// </summary>
     public static class UpdateProcess
     {
-        private static Timer _timer;
+        private static System.Timers.Timer _timer;
 
         private static Status _previousStatus;
 
@@ -48,8 +50,7 @@ namespace ZulipStatusUpdater
         private static void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             // Execute the update process
-            Execute();
-            
+            Execute();            
         }
 
         /// <summary>
@@ -57,31 +58,33 @@ namespace ZulipStatusUpdater
         /// </summary>
         public static void Execute()
         {
-            
-            string localIP = NetworkCheck.GetCurrentIP();
-
-            var statusToSet = SettingsManager.GetSettings().DefaultStatus;
-
-            // Find out the corresponding status to be set
-            if (SettingsManager.GetSettings().usewifi) {
-                // Get connected SSIDs
-                var wifiNames = NetworkCheck.GetWifiConnectionSSIDs();
-                statusToSet = StatusProfileService.GetStatusWifi(wifiNames);
-            }
-            else
+            if (!SettingsManager.GetSettings().disableStatusUpdate)
             {
-                statusToSet = StatusProfileService.GetStatusIP(localIP);
-            }
-            // Null check and compare status to previous status. Update if changed.
-            if (statusToSet != null && (!statusToSet.Equals(_previousStatus)) || !localIP.Equals(_previousIP))
-            {
-                var success = ZulipStatusService.SetZulipStatus(statusToSet, localIP);
-                if (success)
-                    _previousStatus = statusToSet;
+                string localIP = NetworkCheck.GetCurrentIP();
+
+                var statusToSet = SettingsManager.GetSettings().DefaultStatus;
+
+                // Find out the corresponding status to be set
+                if (SettingsManager.GetSettings().usewifi)
+                {
+                    // Get connected SSIDs
+                    var wifiNames = NetworkCheck.GetWifiConnectionSSIDs();
+                    statusToSet = StatusProfileService.GetStatusWifi(wifiNames);
+                }
+                else
+                {
+                    statusToSet = StatusProfileService.GetStatusIP(localIP);
+                }
+                // Null check and compare status to previous status. Update if changed.
+                if (statusToSet != null && (!statusToSet.Equals(_previousStatus)) || !localIP.Equals(_previousIP))
+                {
+                    var success = ZulipStatusService.SetZulipStatus(statusToSet, localIP);
+                    if (success)
+                        _previousStatus = statusToSet;
                     _previousIP = localIP;
+                }
+
             }
-
         }
-
     }
 }

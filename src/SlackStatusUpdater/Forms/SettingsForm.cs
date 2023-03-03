@@ -109,7 +109,7 @@ namespace ZulipStatusUpdater
             get
             {
                 Version version = Assembly.GetExecutingAssembly().GetName().Version;
-                return "ZulipStatusUpdater v" + version;
+                return Constants.NAME_OF_APP+ " v" + version;
             }
         }
 

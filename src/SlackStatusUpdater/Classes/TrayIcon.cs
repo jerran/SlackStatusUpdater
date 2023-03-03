@@ -5,56 +5,220 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
+using Application = System.Windows.Forms.Application;
+using System.Runtime.CompilerServices;
 
 namespace ZulipStatusUpdater
 {
-    /// <summary>
-    /// Disposable class for handling the system tray icon
-    /// </summary>
-    class TrayIcon : IDisposable
+
+    class RunIcon : ApplicationContext
     {
+        // Private field for the settings form to help ensure only one instance of it is opened
+        private static SettingsForm _settingsForm;
+        //Component declarations
+        public NotifyIcon TrayIcon;
+        private ContextMenuStrip TrayIconContextMenu;
+        private ToolStripMenuItem SettingsMenuItem;
+        private ToolStripMenuItem DisableMenuItem;
+        private ToolStripMenuItem CloseMenuItem;
 
-        /// <summary>
-        ///  System tray icon
-        /// </summary>
-        NotifyIcon ni;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        public TrayIcon()
+        public RunIcon()
         {
-            // Initialize NotifyIcon
-            ni = new NotifyIcon();
-            ni.ContextMenuStrip = ContextMenuFactory.Create();
-            ni.Icon = Resources.zulipicon;
-            ni.Visible = true;
-            ni.Click += new System.EventHandler(NotifyIcon_Click);
+            Application.ApplicationExit += new EventHandler(this.OnApplicationExit);
+            InitializeComponent();
+            TrayIcon.Visible = true;
         }
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        public void Dispose()
+        private void InitializeComponent()
         {
-            // Disappear the system tray icon as soon as the application exits
-            ni.Icon = null;
-            ni.Visible = false;
-            ni.Dispose();
+            TrayIcon = new NotifyIcon();
+            TrayIcon.Text = Constants.NAME_OF_APP;
+
+            //The icon is added to the project resources.
+            //Here, I assume that the name of the file is 'TrayIcon.ico'
+            TrayIcon.Icon = Properties.Resources.zulipicon;
+
+            //Optional - handle doubleclicks on the icon:
+            TrayIcon.DoubleClick += TrayIcon_DoubleClick;
+            TrayIcon.Click += TrayIcon_Click;
+
+            //Optional - Add a context menu to the TrayIcon:
+            TrayIconContextMenu = new ContextMenuStrip();
+            SettingsMenuItem = new ToolStripMenuItem();
+            DisableMenuItem = new ToolStripMenuItem();
+            CloseMenuItem = new ToolStripMenuItem();
+            TrayIconContextMenu.SuspendLayout();
+
+            // 
+            // TrayIconContextMenu
+            // 
+            this.TrayIconContextMenu.Items.AddRange(new ToolStripItem[] {
+            this.SettingsMenuItem,
+            this.DisableMenuItem,
+            this.CloseMenuItem});
+
+            this.TrayIconContextMenu.Name = "TrayIconContextMenu";
+            //this.TrayIconContextMenu.Size = new Size(153, 70);
+
+            // 
+            // SettingsMenuItem
+            // 
+            this.SettingsMenuItem.Name = "SettingsMenuItem";
+            this.SettingsMenuItem.Text = "Settings";
+            this.SettingsMenuItem.Click += new EventHandler(this.SettingsItem_Click);
+
+            // 
+            // SettingsMenuItem
+            // 
+            this.DisableMenuItem.Name = "DisableMenuItem";
+            this.DisableMenuItem.Text = "Disable";
+            this.DisableMenuItem.CheckOnClick = true;
+            this.DisableMenuItem.Click += new EventHandler(this.DisableItem_Click);
+
+
+            //Disable program temporary
+            //ToolStripMenuItem disableItem = new ToolStripMenuItem("Disable program");
+            //disableItem.CheckOnClick = true;
+            //test_bool = disableItem.Checked;
+            //disableItem.CheckedChanged += disableItem_Changed();
+
+            // 
+            // CloseMenuItem
+            // 
+            this.CloseMenuItem.Name = "CloseMenuItem";
+            this.CloseMenuItem.Text = "Exit";
+            this.CloseMenuItem.Click += new EventHandler(this.CloseMenuItem_Click);
+
+            TrayIconContextMenu.ResumeLayout(false);
+            TrayIcon.ContextMenuStrip = TrayIconContextMenu;
         }
 
-        public void NotifyIcon_Click(object sender, System.EventArgs e)
+        private void OnApplicationExit(object sender, EventArgs e)
         {
+            //Cleanup so that the icon will be removed when the application is closed
+            TrayIcon.Visible = false;
+        }
+
+        private void TrayIcon_DoubleClick(object sender, EventArgs e)
+        {
+            //Here, you can do stuff if the tray icon is doubleclicked
+            //TrayIcon.ShowBalloonTip(10000);
+        }
+
+        private void TrayIcon_Click(object sender, EventArgs e)
+        {
+            //Here, you can do stuff if the tray icon is doubleclicked
             UpdateProcess.Execute();
         }
 
-        public void Show_Ballon(string text)
+        private void CloseMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (MessageBox.Show("Do you really want to close me?",
+                    "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+        private void DisableItem_Click(object sender, EventArgs e)
+        {
+            var settings = SettingsManager.GetSettings();
+            settings.disableStatusUpdate = DisableMenuItem.Checked;
+            SettingsManager.ApplySettings(settings);
+            Say(SettingsManager.GetSettings().disableStatusUpdate.ToString());
+        }
+
+
+        public void Say(string text, ToolTipIcon icon = ToolTipIcon.Info)
+        {
             int timeout = 3;
-            ToolTipIcon icon = new ToolTipIcon();
-            ni.ShowBalloonTip(timeout,text,text,icon);
+            TrayIcon.BalloonTipIcon = icon;
+            TrayIcon.BalloonTipText = text;
+            //TrayIcon.BalloonTipTitle = title;
+            TrayIcon.ShowBalloonTip(timeout);
+        }
+
+        public void SetIconHoverText(string text)
+        {
+         TrayIcon.Text = "text";
+
 
         }
+
+
+        /// <summary>
+        /// Handle Settings click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SettingsItem_Click(object sender, EventArgs e)
+        {
+            // Check that settings form is not already open
+            if (_settingsForm == null || _settingsForm.IsDisposed)
+            {
+                // Open settings form
+                _settingsForm = SettingsForm.GetInstance;
+                _settingsForm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                _settingsForm.ShowDialog();
+                _settingsForm.Dispose();
+            }
+        }
+
     }
+
+
+
+
+
+    /* /// <summary>
+     /// Disposable class for handling the system tray icon
+     /// </summary>
+     public class TrayIcon
+     {
+
+         /// <summary>
+         ///  System tray icon
+         /// </summary>
+         NotifyIcon ni;
+
+         /// <summary>
+         /// Constructor
+         /// </summary>
+         public TrayIcon()
+         {
+             // Initialize NotifyIcon
+             ni = new NotifyIcon();
+             ni.ContextMenuStrip = ContextMenuFactory.Create();
+             ni.Icon = Resources.zulipicon;
+             ni.Visible = true;
+             ni.Click += new System.EventHandler(NotifyIcon_Click);
+         }
+
+         /// <summary>
+         /// Dispose
+         /// </summary>
+         public void Dispose()
+         {
+             // Disappear the system tray icon as soon as the application exits
+             ni.Icon = null;
+             ni.Visible = false;
+             ni.Dispose();
+         }
+
+         public void NotifyIcon_Click(object sender, System.EventArgs e)
+         {
+             UpdateProcess.Execute();
+         }
+
+         public void Show_Ballon(string text)
+         {
+
+             int timeout = 3;
+             ToolTipIcon icon = new ToolTipIcon();
+             ni.ShowBalloonTip(timeout,text,text,icon);
+
+         }
+     }*/
 }
