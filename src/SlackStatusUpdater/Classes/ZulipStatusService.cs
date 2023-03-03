@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
 using System.Net.Sockets;
+using Newtonsoft.Json.Linq;
 
 namespace ZulipStatusUpdater
 {
@@ -149,6 +150,54 @@ namespace ZulipStatusUpdater
 
         }
 
+        /// <summary>
+        /// Get zulip realm emojis
+        /// </summary>
+        /// <returns>list of realm emojis</returns>
+        public static List<string> GetRealmEmojis()
+        {
+            List<string> ListOfRealmEmojis = new List<string>(0);
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+
+            var username = SettingsManager.GetSettings().ZulipEmail;
+
+            var client = new RestClient(SettingsManager.GetSettings().ZulipRealm + "/api/v1/realm/emoji");
+            client.UserAgent = "ZulipStatusUpdater";
+
+            client.Authenticator = new HttpBasicAuthenticator(SettingsManager.GetSettings().ZulipEmail, SettingsManager.GetSettings().ZulipApikey);
+
+
+            var request = new RestRequest(Method.GET);
+
+           
+            var response = client.Execute(request);
+
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                return new List<string>(0);
+
+            dynamic content = Newtonsoft.Json.Linq.JObject.Parse(response.Content);
+            foreach (var field in content.emoji)
+            {
+                foreach(var emoji in field)
+                {
+                    if(emoji.deactivated == "false")
+                    {
+                        ListOfRealmEmojis.Add((string)emoji.name);
+                        
+                    }
+                }
+            }
+
+            
+            if (content["result"] == "success") return ListOfRealmEmojis;
+           else return new List<string>(0);
+
+
+        }
+
+
 
 
         /// <summary>
@@ -156,7 +205,7 @@ namespace ZulipStatusUpdater
         /// </summary>
         /// <returns>Sets the API-key in the settings by SSO</returns>
         //https://chat.zulip.org/#narrow/stream/16-desktop/topic/desktop.20app.20OAuth/near/803919
-        
+
         //public static bool GoogleSSOLogin() { return true; }
     }
 }

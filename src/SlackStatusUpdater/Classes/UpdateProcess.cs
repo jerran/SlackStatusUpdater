@@ -58,6 +58,8 @@ namespace ZulipStatusUpdater
         /// </summary>
         public static void Execute()
         {
+
+            ZulipStatusService.GetRealmEmojis();
             if (!SettingsManager.GetSettings().disableStatusUpdate)
             {
                 string localIP = NetworkCheck.GetCurrentIP();
