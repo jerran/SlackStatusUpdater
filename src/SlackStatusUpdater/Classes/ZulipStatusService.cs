@@ -218,7 +218,7 @@ namespace ZulipStatusUpdater
             {
                 foreach (var field in fields)
                 {
-                        ListOfProfileFields.Add((string)field.name);
+                       // ListOfProfileFields.Add((string)field.name);
 
                 }
             }

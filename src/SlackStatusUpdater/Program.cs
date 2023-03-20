@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZulipStatusUpdater.Classes;
 
 namespace ZulipStatusUpdater
 {
@@ -23,6 +24,7 @@ namespace ZulipStatusUpdater
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
 
             runicon = new RunIcon();
             // Start automatic status updates process

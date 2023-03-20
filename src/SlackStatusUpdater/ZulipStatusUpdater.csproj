@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ZulipStatusUpdater</RootNamespace>
     <AssemblyName>ZulipStatusUpdater</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AutoStartManager.cs" />
+    <Compile Include="Classes\ActivityMonitor.cs" />
     <Compile Include="Classes\ContextMenuFactory.cs" />
     <Compile Include="Classes\QuickSave.cs" />
     <Compile Include="Classes\ZulipStatusService.cs" />
