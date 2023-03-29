@@ -12,6 +12,9 @@ using System.Net.Http.Headers;
 using System.Net;
 using System.Net.Sockets;
 using Newtonsoft.Json.Linq;
+using System.Security.Cryptography;
+using NetTools;
+using ZulipStatusUpdater.Classes;
 
 namespace ZulipStatusUpdater
 {
@@ -234,7 +237,45 @@ namespace ZulipStatusUpdater
         /// </summary>
         /// <returns>Sets the API-key in the settings by SSO</returns>
         //https://chat.zulip.org/#narrow/stream/16-desktop/topic/desktop.20app.20OAuth/near/803919
+        // Create secret: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+        // open browser with this url and secret: 
+        //https://org.zulipchat.com/accounts/login/google/?mobile_flow_otp=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+        // The user needs to copy key to application
+        // The app decrypts the key by XORing otp_encrypted_api_key with mobile_flow_otp to get the API key.
+        //
+        // How the desktop-client does it: 
+        // https://github.com/zulip/zulip-mobile/blob/49ed2ef5de3892edf7bb28fbe01271903913bb3d/src/start/webAuth.js
+        //
+        // How the server responds 
+        // https://github.com/zulip/zulip/blob/f4d2d199e249f9c6437a952c201cb0d163eb9069/zerver/lib/mobile_auth_otp.py
 
-        //public static bool GoogleSSOLogin() { return true; }
+        public static byte[] GoogleSSOLogin() {
+
+            var randomGenerator = System.Security.Cryptography.RandomNumberGenerator.Create();
+
+            byte[] randomBytes = new byte[32];
+            randomGenerator.GetBytes(randomBytes,0,32);
+
+            string randomString = BitConverter.ToString(randomBytes).Replace("-", "");
+
+            var settings = SettingsManager.GetSettings();
+
+            string target = settings.ZulipRealm + "/accounts/login/google/?mobile_flow_otp=";
+            target += randomString;
+
+            System.Diagnostics.Process.Start(target);
+
+            return randomBytes;
+        }
+
+
+        public static string DecryptAPIkeySSO(string encryptedAPIkey, byte[] otp)
+        {
+            byte[] array = Tools.StringToByteArray(encryptedAPIkey);
+            byte[] xored = Tools.exclusiveOR(otp, array);
+            string APIkey = System.Text.Encoding.ASCII.GetString(xored);
+            return APIkey;
+        }
+
     }
 }

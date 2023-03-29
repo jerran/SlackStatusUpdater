@@ -51,6 +51,8 @@
             this.btnGetAPIkey = new System.Windows.Forms.Button();
             this.cboDefaultSendIP = new System.Windows.Forms.CheckBox();
             this.cboUsewifi = new System.Windows.Forms.CheckBox();
+            this.SSObtn = new System.Windows.Forms.Button();
+            this.SSObtnAfter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -247,11 +249,33 @@
             this.cboUsewifi.Text = "Determine status on available wifi networks";
             this.cboUsewifi.UseVisualStyleBackColor = true;
             // 
+            // SSObtn
+            // 
+            this.SSObtn.Location = new System.Drawing.Point(465, 60);
+            this.SSObtn.Name = "SSObtn";
+            this.SSObtn.Size = new System.Drawing.Size(75, 23);
+            this.SSObtn.TabIndex = 24;
+            this.SSObtn.Text = "Google SSO";
+            this.SSObtn.UseVisualStyleBackColor = true;
+            this.SSObtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // SSObtnAfter
+            // 
+            this.SSObtnAfter.Location = new System.Drawing.Point(546, 60);
+            this.SSObtnAfter.Name = "SSObtnAfter";
+            this.SSObtnAfter.Size = new System.Drawing.Size(121, 23);
+            this.SSObtnAfter.TabIndex = 26;
+            this.SSObtnAfter.Text = "Press here after SSO login";
+            this.SSObtnAfter.UseVisualStyleBackColor = true;
+            this.SSObtnAfter.Click += new System.EventHandler(this.button2_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 374);
+            this.Controls.Add(this.SSObtnAfter);
+            this.Controls.Add(this.SSObtn);
             this.Controls.Add(this.cboUsewifi);
             this.Controls.Add(this.cboDefaultSendIP);
             this.Controls.Add(this.btnGetAPIkey);
@@ -310,5 +334,7 @@
         private System.Windows.Forms.Button btnGetAPIkey;
         private System.Windows.Forms.CheckBox cboDefaultSendIP;
         private System.Windows.Forms.CheckBox cboUsewifi;
+        private System.Windows.Forms.Button SSObtn;
+        private System.Windows.Forms.Button SSObtnAfter;
     }
 }

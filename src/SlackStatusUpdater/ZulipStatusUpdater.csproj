@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="Classes\AutoStartManager.cs" />
     <Compile Include="Classes\ActivityMonitor.cs" />
+    <Compile Include="Classes\Tools.cs" />
     <Compile Include="Classes\ContextMenuFactory.cs" />
     <Compile Include="Classes\QuickSave.cs" />
     <Compile Include="Classes\ZulipStatusService.cs" />

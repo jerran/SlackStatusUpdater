@@ -11,6 +11,7 @@ using System.Net.Sockets;
 using System.Security.Principal;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
+using ZulipStatusUpdater.Classes;
 
 namespace ZulipStatusUpdater
 {
@@ -35,7 +36,7 @@ namespace ZulipStatusUpdater
 
             // Set timer interval for how often to check for changes that might require a status
             // update
-            _timer = new Timer(120000);
+            _timer = new Timer(2000);
             _timer.Elapsed += _timer_Elapsed;
             _timer.Start();
 
@@ -50,7 +51,7 @@ namespace ZulipStatusUpdater
         private static void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             // Execute the update process
-            Execute();            
+            Execute();
         }
 
         /// <summary>

@@ -14,6 +14,7 @@ namespace ZulipStatusUpdater
 {
     public partial class SettingsForm : Form
     {
+            byte[] otp;
         // Singleton instance field
         private static SettingsForm _instance;
 
@@ -29,6 +30,7 @@ namespace ZulipStatusUpdater
 
             // Get settings
             _settings = SettingsManager.GetSettings();
+
 
             // Bind datagridview to status profiles
             BindingSource bs = new BindingSource();
@@ -112,5 +114,18 @@ namespace ZulipStatusUpdater
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            otp = ZulipStatusService.GoogleSSOLogin();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var settings = SettingsManager.GetSettings();
+            string apikey = ZulipStatusService.DecryptAPIkeySSO(settings.LastOTPEncryptedApiToken, otp);
+            Program.runicon.Say(apikey);
+            tboApiToken.Text = apikey;
+            tboZulipUser.Text = settings.ZulipEmail;
+        }
     }
 }

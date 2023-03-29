@@ -13,6 +13,9 @@ namespace ZulipStatusUpdater.Models
     [XmlRoot("settings")]
     public class Settings
     {
+        [XmlElement("last-otp-encrypted-api-token")]
+        public string LastOTPEncryptedApiToken { get; set; }
+
         [XmlElement("legacy-api-token")]
         public string LegacyApiToken { get; set; }
 
