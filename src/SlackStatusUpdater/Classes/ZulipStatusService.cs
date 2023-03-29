@@ -219,11 +219,12 @@ namespace ZulipStatusUpdater
             dynamic content = Newtonsoft.Json.Linq.JObject.Parse(response.Content);
             foreach (var fields in content.custom_fields)
             {
-                foreach (var field in fields)
-                {
-                       // ListOfProfileFields.Add((string)field.name);
+                
 
-                }
+                    ListOfProfileFields.Add((string)fields.name);
+
+
+
             }
             if (content["result"] == "success") return ListOfProfileFields;
             else return new List<string>(0);

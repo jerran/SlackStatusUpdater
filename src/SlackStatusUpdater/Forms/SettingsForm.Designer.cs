@@ -53,6 +53,7 @@
             this.cboUsewifi = new System.Windows.Forms.CheckBox();
             this.SSObtn = new System.Windows.Forms.Button();
             this.SSObtnAfter = new System.Windows.Forms.Button();
+            this.tableProfileFields = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -269,11 +270,26 @@
             this.SSObtnAfter.UseVisualStyleBackColor = true;
             this.SSObtnAfter.Click += new System.EventHandler(this.button2_Click);
             // 
+            // tableProfileFields
+            // 
+            this.tableProfileFields.ColumnCount = 2;
+            this.tableProfileFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableProfileFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableProfileFields.Location = new System.Drawing.Point(741, 6);
+            this.tableProfileFields.Name = "tableProfileFields";
+            this.tableProfileFields.RowCount = 2;
+            this.tableProfileFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableProfileFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.89944F));
+            this.tableProfileFields.Size = new System.Drawing.Size(291, 358);
+            this.tableProfileFields.TabIndex = 27;
+            this.tableProfileFields.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 374);
+            this.ClientSize = new System.Drawing.Size(1044, 374);
+            this.Controls.Add(this.tableProfileFields);
             this.Controls.Add(this.SSObtnAfter);
             this.Controls.Add(this.SSObtn);
             this.Controls.Add(this.cboUsewifi);
@@ -336,5 +352,6 @@
         private System.Windows.Forms.CheckBox cboUsewifi;
         private System.Windows.Forms.Button SSObtn;
         private System.Windows.Forms.Button SSObtnAfter;
+        private System.Windows.Forms.TableLayoutPanel tableProfileFields;
     }
 }

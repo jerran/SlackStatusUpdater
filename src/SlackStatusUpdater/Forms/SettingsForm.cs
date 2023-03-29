@@ -9,12 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Web.UI.WebControls;
+using Label = System.Windows.Forms.Label;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace ZulipStatusUpdater
 {
     public partial class SettingsForm : Form
     {
-            byte[] otp;
+        //storing last used OTP for SSO login
+        byte[] otp;
+
+
         // Singleton instance field
         private static SettingsForm _instance;
 
@@ -47,6 +53,25 @@ namespace ZulipStatusUpdater
             cboAutoStart.DataBindings.Add("Checked", _settings, "AutoStart", false, DataSourceUpdateMode.OnPropertyChanged);
             tboZulipUser.DataBindings.Add("Text", _settings, "ZulipEmail", false, DataSourceUpdateMode.OnPropertyChanged);
             cboUsewifi.DataBindings.Add("Checked", _settings, "useWifi", false, DataSourceUpdateMode.OnPropertyChanged);
+
+
+            // Draw table with profile fields
+
+            tableProfileFields.ColumnCount = 2;
+            tableProfileFields.RowCount = 0;
+            tableProfileFields.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,10));
+            tableProfileFields.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+            List<string> fields = ZulipStatusService.GetCustomProfileFields();
+            //List<string> fields = new List<string>();
+            foreach (string field in fields)
+            {
+                tableProfileFields.RowCount++;
+                tableProfileFields.Controls.Add(new Label() { Text = field.Normalize(), Dock = DockStyle.Fill }, 0, tableProfileFields.RowCount-1);
+                tableProfileFields.Controls.Add(new TextBox() { Dock = DockStyle.Fill }, 1, tableProfileFields.RowCount-1);
+            }
+
+
         }
 
         /// <summary>
@@ -126,6 +151,11 @@ namespace ZulipStatusUpdater
             Program.runicon.Say(apikey);
             tboApiToken.Text = apikey;
             tboZulipUser.Text = settings.ZulipEmail;
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
