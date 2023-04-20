@@ -126,6 +126,7 @@
     <Compile Include="Classes\QuickSave.cs" />
     <Compile Include="Classes\ZulipStatusService.cs" />
     <Compile Include="Classes\TrayIcon.cs" />
+    <Compile Include="Models\ProfileFields.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Classes\NetworkCheck.cs" />

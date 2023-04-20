@@ -62,13 +62,29 @@ namespace ZulipStatusUpdater
             tableProfileFields.ColumnStyles.Add(new ColumnStyle(SizeType.Percent,10));
             tableProfileFields.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-            List<string> fields = ZulipStatusService.GetCustomProfileFields();
+            List<ProfileField> fields = ZulipStatusService.GetCustomProfileFields();
+            List<ProfileField> content = ZulipStatusService.FillCustomProfileFields();
             //List<string> fields = new List<string>();
-            foreach (string field in fields)
+            //tableProfileFields.RowCount = fields.Count;
+            foreach (ProfileField field in fields)
             {
                 tableProfileFields.RowCount++;
-                tableProfileFields.Controls.Add(new Label() { Text = field.Normalize(), Dock = DockStyle.Fill }, 0, tableProfileFields.RowCount-1);
-                tableProfileFields.Controls.Add(new TextBox() { Dock = DockStyle.Fill }, 1, tableProfileFields.RowCount-1);
+                tableProfileFields.Controls.Add(new Label() { Text = field.Name.Normalize(), Dock = DockStyle.Fill }, 0, tableProfileFields.RowCount-1);
+                switch (field.Type)
+                {
+                    case ProfileField.FieldType.SHORT_TEXT:
+                        tableProfileFields.Controls.Add(new TextBox() { Dock = DockStyle.Fill }, 1, tableProfileFields.RowCount - 1);
+                        break;
+                    case ProfileField.FieldType.LONG_TEXT:
+                        break;
+                    case ProfileField.FieldType.LIST_OF_OPTIONS:
+                        tableProfileFields.Controls.Add(new ComboBox() { Dock = DockStyle.Fill }, 1, tableProfileFields.RowCount - 1);
+                        break;
+
+
+                    default:
+                        continue;
+                }
             }
 
 

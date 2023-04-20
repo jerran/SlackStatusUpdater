@@ -54,6 +54,7 @@
             this.SSObtn = new System.Windows.Forms.Button();
             this.SSObtnAfter = new System.Windows.Forms.Button();
             this.tableProfileFields = new System.Windows.Forms.TableLayoutPanel();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgWifi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -272,23 +273,33 @@
             // 
             // tableProfileFields
             // 
+            this.tableProfileFields.AutoScroll = true;
             this.tableProfileFields.ColumnCount = 2;
             this.tableProfileFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableProfileFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableProfileFields.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableProfileFields.Location = new System.Drawing.Point(741, 6);
             this.tableProfileFields.Name = "tableProfileFields";
             this.tableProfileFields.RowCount = 2;
             this.tableProfileFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableProfileFields.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.89944F));
+            this.tableProfileFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableProfileFields.Size = new System.Drawing.Size(291, 358);
             this.tableProfileFields.TabIndex = 27;
             this.tableProfileFields.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // label10
+            // 
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label10.Location = new System.Drawing.Point(732, 7);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(2, 358);
+            this.label10.TabIndex = 28;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 374);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.tableProfileFields);
             this.Controls.Add(this.SSObtnAfter);
             this.Controls.Add(this.SSObtn);
@@ -353,5 +364,6 @@
         private System.Windows.Forms.Button SSObtn;
         private System.Windows.Forms.Button SSObtnAfter;
         private System.Windows.Forms.TableLayoutPanel tableProfileFields;
+        private System.Windows.Forms.Label label10;
     }
 }

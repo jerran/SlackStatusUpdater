@@ -194,13 +194,14 @@ namespace ZulipStatusUpdater
 
         }
 
+
         /// <summary>
         /// Get Custom profile fields
         /// </summary>
         /// <returns>list of custom profile fields</returns>
-        public static List<string> GetCustomProfileFields()
+        public static List<ProfileField> GetCustomProfileFields()
         {
-            List<string> ListOfProfileFields = new List<string>(0);
+            List<ProfileField> ListOfProfileFields = new List<ProfileField>(0);
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
@@ -214,23 +215,61 @@ namespace ZulipStatusUpdater
             var response = client.Execute(request);
 
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                return new List<string>(0);
+                return new List<ProfileField>(0);
 
             dynamic content = Newtonsoft.Json.Linq.JObject.Parse(response.Content);
             foreach (var fields in content.custom_fields)
             {
-                
-
-                    ListOfProfileFields.Add((string)fields.name);
-
-
-
+                string name = fields.name;
+                int id = fields.id;
+                int order = fields.order;
+                ProfileField.FieldType type = fields.type;
+                ProfileField field = new ProfileField(name,id,order,type);
+                if(field.Type == ProfileField.FieldType.LIST_OF_OPTIONS || field.Type == ProfileField.FieldType.EXTERNAL_ACCOUNT)
+                {
+                  // handle list of options and external account
+                }
+                ListOfProfileFields.Add(field);
             }
-            if (content["result"] == "success") return ListOfProfileFields;
-            else return new List<string>(0);
-
-
+            List<ProfileField> SortedList = ListOfProfileFields.OrderBy(o => o.Order).ToList();
+            if (content["result"] == "success") return SortedList;
+            else return new List<ProfileField>(0);
         }
+
+        /// <summary>
+        /// Get Custom profile fields content
+        /// </summary>
+        /// <returns>list of custom profile fields</returns>
+        public static List<ProfileField> FillCustomProfileFields()
+        {
+            List<ProfileField> ListOfProfileFields = new List<ProfileField>(0);
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            var username = SettingsManager.GetSettings().ZulipEmail;
+            var client = new RestClient(SettingsManager.GetSettings().ZulipRealm + "/api/v1/users/me");
+            client.UserAgent = "ZulipStatusUpdater";
+
+            client.Authenticator = new HttpBasicAuthenticator(SettingsManager.GetSettings().ZulipEmail, SettingsManager.GetSettings().ZulipApikey);
+            var request = new RestRequest(Method.GET);
+            var response = client.Execute(request);
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                return new List<ProfileField>(0);
+
+            dynamic content = Newtonsoft.Json.Linq.JObject.Parse(response.Content);
+
+            foreach (JProperty fields in content.profile_data)
+            {
+                string name = fields.Name;
+                string value = fields.Value["value"].ToString();   
+            }
+            List<ProfileField> SortedList = ListOfProfileFields.OrderBy(o => o.Order).ToList();
+            if (content["result"] == "success") return SortedList;
+            else return new List<ProfileField>(0);
+        }
+
+
+
 
 
         /// <summary>
