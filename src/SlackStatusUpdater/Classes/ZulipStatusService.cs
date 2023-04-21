@@ -19,7 +19,7 @@ using ZulipStatusUpdater.Classes;
 namespace ZulipStatusUpdater
 {
     /// <summary>
-    /// Class for setting slack status
+    /// Class for setting Zulip status
     /// </summary>
     public static class ZulipStatusService
     {
@@ -285,9 +285,16 @@ namespace ZulipStatusUpdater
         //
         // How the desktop-client does it: 
         // https://github.com/zulip/zulip-mobile/blob/49ed2ef5de3892edf7bb28fbe01271903913bb3d/src/start/webAuth.js
-        //
         // How the server responds 
         // https://github.com/zulip/zulip/blob/f4d2d199e249f9c6437a952c201cb0d163eb9069/zerver/lib/mobile_auth_otp.py
+        //
+        //
+        // The solution here is a hack using the mobile otp endpoint. 
+        // ZsU registers as available for zulip:// URI. 
+        // GoogleSSOLogin() creates the secret and opens a browser window where the user can authenticate using google SSO
+        // When the page is redirected to zulip://... with the authentication token, a new instance of ZsU is launched capturing 
+        // the (encrypted) token, saving it to the settingsfile and killing it self. 
+        // Then DecryptAPIkeySSO can be called using the saved auth token and secret. 
 
         public static byte[] GoogleSSOLogin() {
 
