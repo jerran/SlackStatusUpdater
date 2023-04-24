@@ -15,6 +15,12 @@ using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 using NetTools;
 using ZulipStatusUpdater.Classes;
+using System.Collections;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Web.UI.WebControls;
+using Status = ZulipStatusUpdater.Models.Status;
+using Newtonsoft.Json;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ZulipStatusUpdater
 {
@@ -240,9 +246,9 @@ namespace ZulipStatusUpdater
         /// Get Custom profile fields content
         /// </summary>
         /// <returns>list of custom profile fields</returns>
-        public static List<ProfileField> FillCustomProfileFields()
+        public static List<ProfileField> FillCustomProfileFields(List<ProfileField> list_to_fill)
         {
-            List<ProfileField> ListOfProfileFields = new List<ProfileField>(0);
+            //List<ProfileField> ListOfProfileFields = new List<ProfileField>(0);
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             var username = SettingsManager.GetSettings().ZulipEmail;
@@ -260,13 +266,61 @@ namespace ZulipStatusUpdater
 
             foreach (JProperty fields in content.profile_data)
             {
+                bool containsItem = list_to_fill.Any(item => item.Id == int.Parse(fields.Name));
                 string name = fields.Name;
                 string value = fields.Value["value"].ToString();   
+                if (containsItem)
+                {
+                    list_to_fill.First(item => item.Id == int.Parse(fields.Name)).FieldData = value; 
+                }
             }
-            List<ProfileField> SortedList = ListOfProfileFields.OrderBy(o => o.Order).ToList();
-            if (content["result"] == "success") return SortedList;
+            //List<ProfileField> SortedList = ListOfProfileFields.OrderBy(o => o.Order).ToList();
+            if (content["result"] == "success") return list_to_fill;
             else return new List<ProfileField>(0);
         }
+
+
+        /// <summary>
+        /// Update values of custom profile fields on server
+        /// </summary>
+        /// <returns>list of custom profile fields</returns>
+        public static void UpdateProfileOnServer(ProfileField field_to_update)
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            var username = SettingsManager.GetSettings().ZulipEmail;
+            var client = new RestClient(SettingsManager.GetSettings().ZulipRealm + "/api/v1/users/me/profile_data");
+            client.UserAgent = "ZulipStatusUpdater";
+
+            client.Authenticator = new HttpBasicAuthenticator(SettingsManager.GetSettings().ZulipEmail, SettingsManager.GetSettings().ZulipApikey);
+            var request = new RestRequest(Method.PATCH);
+            request.RequestFormat = DataFormat.Json;
+
+
+            //request.AddJsonBody(new { A = "foo", B = "bar" });
+            var json = JsonConvert.SerializeObject(
+                new[] {
+                         new {id = field_to_update.Id , value = field_to_update.FieldData },
+                        }
+            );
+
+            request.AddParameter("data", json);
+            
+            var response = client.Execute(request);
+
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                return;
+            }
+
+            dynamic content = Newtonsoft.Json.Linq.JObject.Parse(response.Content);
+
+
+            //List<ProfileField> SortedList = ListOfProfileFields.OrderBy(o => o.Order).ToList();
+            if (content["result"] == "success") return;
+            else return;
+        }
+
 
 
 
